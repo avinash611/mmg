@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout>   
+    <customer_account>
+        <!-- Mapmygenomie_Customerenquiry -->
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" ifconfig="contacts/mapmygenomie_customerenquiry/active" module="mapmygenomie_customerenquiry">
+                <name>customerenquiry</name>
+                <path>customerenquiry/</path>
+                <label>23andMe Customer Reports</label>
+            </action>
+        </reference>        
+    </customer_account>  
+    	
+    <routeurfrontendcustomer_index_index translate="label">
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <label>23andMe Customer Reports</label>  
+            <block type="mapmygenomie_customerenquiry/monblock" name="customerenquiry_monblock" template="customerenquiry/customerenquiry.phtml" />
+        </reference>
+    </routeurfrontendcustomer_index_index>
+</layout>

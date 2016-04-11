@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<widgets>
+    <homepagebanner_banner type="homepagebanner/banner" translate="name description" module="homepagebanner">
+        <name>Homepage Banner</name>
+        <description>Adds Homepage Banner</description>
+        <parameters>
+            <template translate="label">
+                <label>Template</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <values>
+                    <banner translate="label">
+                        <value>homepagebanner/banner.phtml</value>
+                        <label>Banner</label>
+                    </banner>
+                </values>
+            </template>
+        </parameters>
+    </homepagebanner_banner>
+</widgets>

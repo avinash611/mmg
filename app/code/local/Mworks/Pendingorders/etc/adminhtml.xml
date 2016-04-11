@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+ 
+<config>
+    <menu>
+        <sales>
+            <children>
+                <mworks_pendingorders translate="title" module="mworks_pendingorders">
+                    <sort_order>10</sort_order>
+                    <title>Pending Orders</title>
+                    <action>adminhtml/order/</action>
+                </mworks_pendingorders>
+            </children>
+        </sales>
+    </menu>
+</config>

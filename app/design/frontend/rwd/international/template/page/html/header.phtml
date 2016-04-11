@@ -1,0 +1,138 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+ $CMSpage = Mage::registry('CMSPage');
+ $baseUrl= Mage::getUrl();
+ $headerclass = 'nav trans_pt4s nav_color  nav_act_start nav_act';
+ if($CMSpage == 'home') {
+	 $headerclass = 'nav trans_pt4s';
+ }
+ 
+?>
+
+<div id="preloader"></div>
+
+<?php $helper = Mage::helper('customer'); ?>
+
+<div class="<?php echo $headerclass;?>">
+    <div class="nav_in trans_pt4s">
+        <div class="logo_wrap nav_com_wrap trans_pt4s">
+            <span class="mobile_menu">
+                    <span class="trans_pt4s"></span>
+                    <span class="trans_pt4s"></span>
+                    <span class="trans_pt4s"></span>
+                </span>
+            <a href="<?php echo $this->getUrl('') ?>" class="logoimg">
+                <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="large" />
+            </a>
+        </div>
+		<div class="nav_wrap nav_com_wrap trans_pt4s">
+
+			<div class="mobile_search search_opn trans_pt4s">
+				<div>
+					<input class="inputfirst" type="text" placeholder="Search anything" />
+					<span class="search_icon"></span>
+				</div>
+			</div>
+			
+			<ul>		
+			<?php echo $this->getChildHtml('topMenu') ?>  
+			
+			 <?php if (Zend_Http_UserAgent_Mobile::match(Mage::helper('core/http')->getHttpUserAgent(), $_SERVER)) { ?>
+					<li><a href="<?php echo Mage::app()->getStore(1)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>" target="_blank"><span class="trans_pt4s">India Store<p class="trans_pt4s"></p></span></a></li>
+			<?php }?>	
+		    </ul>
+		</div>
+        
+        <div class="nav_other_wrap nav_com_wrap trans_pt4s">
+            <div class="nav_other_wrap_in">
+                
+                    <div class="login" >
+                        <?php if (!Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+                        <a class="b4login" href="<?php echo Mage::getUrl('customer/account/login'); ?>">Login/Signup</a>
+
+                         <?php else: ?>
+                            <a class="afterlogin" href="<?php echo Mage::getUrl('customer/account'); ?>"> <span>My Account</span></a>
+                            <a class="afterlogin" href="<?php echo $helper->getLogoutUrl(); ?>"><span><?php echo $this->__('Logout'); ?></span></a>
+                        <?php endif; ?>
+                    </div>
+               
+                <!-- <input class="nav_search" placeholder="Search" /> -->
+                <span class="search_btn">
+                    <span></span>
+                </span>
+
+                <span class="cart_btn cart_delay">
+				<?php
+        		
+        	$_cartQty = Mage::helper('checkout/cart')->getItemsCount();
+            if(empty($_cartQty)) {
+                $_cartQty = 0;
+            }
+        	?>
+                    <span><p id="cart_qty"><?php echo $_cartQty;?></p></span>
+
+                </span>
+				<span class="country-btn">
+                    <span></span>
+                </span>
+
+                <span class="mini_cart_close trans_pt4s">
+                    <span class="mini_cart_close_in"><span class="btn_arrow white_arrow btn_arrow_small"></span><p>Continue Shopping</p></span>
+                </span>
+				 <!-- country custom list -->
+                <div class="country-dropdown trans_pt4s">
+				    <a href="/mmg">India</a>
+                    <a href="<?php echo $baseUrl;?>">International</a>
+                </div>
+                <!-- country custom list -->
+            </div>
+        </div>
+    </div>
+
+    <div class="search_opn trans_pt4s">
+        <div>
+            <?php //echo $this->getChildHtml('topSearch') ?>
+			  <?php if ($this->getRequest()->getParam('q')) : ?>
+               <?php echo '<gcse:searchbox></gcse:searchbox>';?>
+            <?php else: ?>
+            <?php echo '<gcse:searchbox-only resultsUrl="http://mapmygenome.in/international/search-results" newWindow="true" queryParameterName="q">'; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="mini_cart trans_pt4s">
+        <div class="mini_cart_in" id="minicartsection">
+            
+			<?php echo $this->getChildHtml('minicart_head') ?>
+        </div>
+    </div>
+
+</div>
+
+

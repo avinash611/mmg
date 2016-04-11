@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+<modules>
+<Rewrite_GoogleAnalytics>
+<active>true</active>
+<codePool>local</codePool>
+</Rewrite_GoogleAnalytics>
+</modules>
+</config> 

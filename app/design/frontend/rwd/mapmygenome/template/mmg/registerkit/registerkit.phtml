@@ -1,0 +1,43 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Avinash
+ * Date: 4/11/16
+ * Time: 2:03 PM
+ */
+?>
+<div class="page-title">
+    <h1><?php echo $this->__('Register Your Kit') ?></h1>
+    <button onclick="setLocation('<?php echo $this->getUrl('kit/register/new')?>')" title="<?php echo Mage::helper('core')->quoteEscape($this->__('+ Register')) ?>" class="button"><span><span><?php echo $this->__('+ Register') ?></span></span></button>
+</div>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?php echo $this->getChildHtml('form_before')?>
+<form action="<?php echo $this->getAction() ?>" method="post" id="form-validate">
+    <div class="fieldset">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <h3><?php echo $this->__('Your Registered Kits') ?></h3>
+    </div>
+
+        <div class="registered-kits">
+        <ul class="form-list">
+          <li>
+              546545DJF
+          </li>
+            <li>
+                46546545kTF
+            </li>
+        </ul>
+        </div>
+
+    <div class="buttons-set">
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+
+    </div>
+</form>
+<?php /* Extensions placeholder */ ?>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    //]]>
+</script>

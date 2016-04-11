@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mapmygenomie_Videogallery>
+            <version>0.1.0</version>
+        </Mapmygenomie_Videogallery>
+    </modules>    
+   
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <mapmygenomie_videogallery after="Mage_Adminhtml">Mapmygenomie_Videogallery_Adminhtml</mapmygenomie_videogallery>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    <adminhtml>  
+        <layout>
+            <updates>
+                <mapmygenomie_videogallery>
+                    <file>mapmygenomie_videogallery.xml</file>
+                </mapmygenomie_videogallery>
+            </updates>
+        </layout>
+    </adminhtml>   
+      
+          
+    <frontend>
+        <routers>
+            <mapmygenomie_videogallery>
+                <use>standard</use>
+                <args>
+                    <module>Mapmygenomie_Videogallery</module>
+                    <frontName>videos</frontName>
+                </args>
+            </mapmygenomie_videogallery>
+        </routers> 
+        <layout>
+            <updates>
+                <mapmygenomie_videogallery> 
+                    <file>mapmygenomie_videogallery.xml</file>
+                </mapmygenomie_videogallery>
+            </updates>
+        </layout> 
+    </frontend>
+    
+    
+    <global>
+        <helpers>
+            <mapmygenomie_videogallery>
+                <class>Mapmygenomie_Videogallery_Helper</class>
+            </mapmygenomie_videogallery>
+        </helpers>
+            
+        <models>
+            <mapmygenomie_videogallery>
+                <class>Mapmygenomie_Videogallery_Model</class>
+                <resourceModel>videogallery_mysql4</resourceModel>
+            </mapmygenomie_videogallery>
+            <videogallery_mysql4>
+                <class>Mapmygenomie_Videogallery_Model_Mysql4</class>
+                <entities>
+                    <videogallery>
+                        <table>mapmygenomie_videogallery_videos</table>
+                    </videogallery>
+                </entities>
+            </videogallery_mysql4>
+        </models>
+        <resources>
+            <mapmygenomie_videogallery_setup>
+                <setup>
+                    <module>Mapmygenomie_Videogallery</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mapmygenomie_videogallery_setup>
+            
+            <mapmygenomie_videogallery_write>
+                <connection>
+                    <use>core_write</use>
+                </connection> 
+            </mapmygenomie_videogallery_write>
+            <mapmygenomie_videogallery_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mapmygenomie_videogallery_read>
+        </resources>
+        <blocks>
+            <mapmygenomie_videogallery>
+                <class>Mapmygenomie_Videogallery_Block</class>
+            </mapmygenomie_videogallery>
+        </blocks>
+    </global>  
+</config>

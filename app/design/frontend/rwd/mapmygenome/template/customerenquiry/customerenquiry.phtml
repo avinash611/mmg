@@ -1,0 +1,139 @@
+<?php
+$redirect_url = Mage::getUrl('customer/account/login/');
+$current_url = Mage::helper('core/url')->getCurrentUrl();
+if ((!Mage::helper('customer')->isLoggedIn()) && ($current_url != $redirect_url)) {
+    Mage::app()->getFrontController()->getResponse()->setRedirect($redirect_url);
+}
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+?>
+<div class="login-wrapper signup-wrapper">
+    <div class="page-title">
+        <h1><?php echo $this->__('23andme Genomepatri Reports') ?></h1>
+    </div>
+    <!--<section>
+        <div class="login-masthead">
+            <div class="frgt-pwd-head">23andme Customer Reports</div>
+        </div>
+    </section>-->
+    <section>
+        <div class="login-body report-wrapper">
+            <div class="signup-form">
+                <form id="corporate_enquiry_form" name="23andme_report_form" action="<?php echo Mage::getUrl('customerenquiry/index/save') ?>" method="post" enctype="multipart/form-data" >
+                    <?php echo $this->getBlockHtml('formkey') ?>
+                    <div class="fieldset" id="contactForm">
+                        <div class="form-input divider " id="cust-name">
+                            <?php echo $customer->getName(); ?>
+                        </div>
+                        <div class="form-input divider" id="cust-e-mail">
+                            <?php echo $customer->getEmail(); ?>
+                        </div>
+                        <div class="form-input divider req">
+                            <div class="field file_type_position">
+                                <label class="name-class" for="name" class="required">Upload Data<span id="updata">( We support .txt,.zip,.rar files.)</span></label>
+                                <div class="report-input-box">
+                                    <div class="report-input-box-outer">
+                                        <input type="file" name="filename" id="filename" title="Upload File" value="" Placeholder="We support .txt,.zip,.rar files" class="required-entry" />
+                                        <p class="choose-file">Choose File</p><span class="filechoosen">No File chosen</span>
+										<div class="error"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="auth-btn">	
+                            <button type="submit" title="Submit" class="button cust-report-btn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript"> //<![CDATA[
+    var customerEnquiryForm = new VarienForm('23andme_report_form', true);
+     jQuery('input:file').change(
+    function(e){
+        var choosen_filename = jQuery('input[type=file]').val().replace(/.*(\/|\\)/, '');
+        jQuery(".filechoosen").html(choosen_filename);
+		jQuery(".error").html("");
+    })
+     jQuery(".choose-file").on("click",function(){
+       // jQuery("#filename").trigger(click());
+	   jQuery(".error").html("");
+        jQuery("#filename").trigger("click");
+     })
+	 
+	jQuery(".cust-report-btn").on("click", function () {
+        if (jQuery("#filename").val() == '') {
+            jQuery(".error").html("Please upload the file");
+            return false;
+        } else {
+            var ext = jQuery("#filename").val().split('.').pop().toLowerCase();
+            if (jQuery.inArray(ext, ['txt', 'zip', 'rar']) == -1) {
+                jQuery(".error").html("Please upload .txt,.zip,.rar files");
+                return false;
+            } else {
+                jQuery(this).text("Uploading..");
+            }
+        }
+    });
+//]]>
+
+</script>
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+    <?php $allEnquires = $this->getCustomerEnquiry(); ?>
+    <?php if (isset($allEnquires) && $allEnquires->getSize() >= 1): ?>
+       
+        <div class="page-title reports-title cust-update">
+            <h1><?php echo $this->__('My Reports') ?></h1>
+        </div>
+        <?php //echo $this->getChildHtml('info'); ?>
+        <?php echo $this->getPagerHtml(); ?>
+        <?php if ($allEnquires->getSize()): ?>
+            <table class="data-table orders cust-report-table" id="my-enquiry-table">
+                <!--<col width="1" />
+                <col width="1" />                
+                <col width="1" />
+                <col width="1" />                
+                <col />-->
+                <thead>
+                    <tr>
+                        <th class="number cust-report-num"><?php echo $this->__('SNo #') ?></th>
+                        <th class="date cust-report-date"><?php echo $this->__('Date') ?></th>
+                        <th class="cust-report-data"><?php echo $this->__('Your Data') ?></th>
+                        <th class="total cust-report-total"><span class="nobr"><?php echo $this->__("Genomepatri") ?></span></th>
+                        <th class="status cust-report-status"><span class="nobr"><?php echo $this->__("Comments") ?></span></th>                  
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $count = 0; ?>
+                    <?php foreach ($allEnquires as $enquires): ?>
+                <?php $count++; ?>
+                        <tr>
+                            <td class="number"><?php echo $count; ?></td>
+                            <td class="date"><span class="nobr"><?php echo $this->formatDate($enquires->getCreatedAt()) ?></span></td>
+
+                            <?php if ($enquires->getCustomerReport()): ?>
+                                <td><a target="_blank" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer_reports/' . $enquires->getCustomerReport() ?>">View</a></td>
+                            <?php else: ?>
+                                <td>&nbsp;</td>
+                            <?php endif ?>
+
+                            <?php if ($enquires->getDoctorReport()): ?>
+                                <td class="total"><a target="_blank" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer_reports/' . $enquires->getDoctorReport() ?>">Download</a></td>
+                            <?php else: ?>
+                                <td class="total">&nbsp;</td>
+                <?php endif ?>
+                            <td class="status cust-report-status"><em><?php echo $enquires->getDoctorComment() ?></em></td>                  
+                        </tr>
+            <?php endforeach; ?>
+                </tbody>
+            </table>
+            <script type="text/javascript">decorateTable('my-enquiry-table');</script>
+            <?php echo $this->getPagerHtml(); ?>
+        <?php else: ?>
+            <p><?php echo $this->__("You haven't  Uploaded any Reports."); ?></p>
+        <?php endif ?>
+    <?php endif ?>
+<?php endif ?>
+

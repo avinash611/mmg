@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<insync translate="label">
+			<label>22 Feet</label>
+			<sort_order>400</sort_order>
+		</insync>
+	</tabs>
+	<sections>
+		<homepagebanner translate="label" module="homepagebanner">
+			<label>Banner Slider</label>
+			<tab>insync</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>999</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<settings translate="label">
+				<label>Banner Slider Settings</label>
+				<frontend_type>text</frontend_type>
+				<sort_order>1</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>1</show_in_store>
+					<fields>
+						<time_delay translate="label, comment">
+							<label>Time Display per Image</label>
+							<comment><![CDATA[in second]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</time_delay>
+						<timeout translate="label, comment">
+							<label>Timeout for each banner</label>
+							<comment><![CDATA[Unit is second]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</timeout>
+						<event translate="label, comment">
+							<label>Mouse event for slider</label>
+							<comment><![CDATA[eg, mouseover,click.cycle]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</event>
+						<transition_effect translate="label, comment">
+							<label>Name of Transition Effect</label>
+							<comment><![CDATA[ex: 'fade,scrollUp,shuffle,turnDown,turnUp,scrollHorz,<br/>blindX,blindY,blindZ,curtainX']]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</transition_effect>
+				
+						<image_width translate="label, comment">
+							<label>Image width</label>
+							<comment><![CDATA[Unit is px]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</image_width>
+						<image_height translate="label, comment">
+							<label>Image height</label>
+							<comment><![CDATA[Unit is px]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</image_height>
+					</fields>
+				</settings>
+			</groups>
+		</homepagebanner>
+	</sections>
+</config>

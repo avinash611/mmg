@@ -1,0 +1,122 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<div class="nav trans_pt4s nav_color  nav_act_start nav_act">
+    <div class="nav_in trans_pt4s">
+        <div class="logo_wrap nav_com_wrap trans_pt4s">
+            <a href="<?php echo $this->getUrl('') ?>" class="logoimg">
+                <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="large" />
+            </a>
+        </div>
+        <div class="nav_wrap nav_com_wrap trans_pt4s">
+            <ul>
+                <li><a href="<?php echo Mage::getBaseUrl() . 'shop.html'; ?>"><span class="trans_pt4s">Shop <p class="trans_pt4s"></p></span></a></li>
+                <li><a><span class="trans_pt4s">About Us <p class="trans_pt4s"></p></span></a></li>
+                <li><a><span class="trans_pt4s">FAQs <p class="trans_pt4s"></p></span></a></li>
+                <li><a><span class="trans_pt4s">Blog <p class="trans_pt4s"></p></span></a></li>
+                <li><a><span class="trans_pt4s">Contact Us <p class="trans_pt4s"></p></span></a></li>
+            </ul>
+        </div>
+        <div class="nav_other_wrap nav_com_wrap trans_pt4s">
+            <div class="nav_other_wrap_in">
+                <?php if (!Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+                    <a href="<?php echo Mage::getUrl('customer/account/login'); ?>"<span class="login">Login/Signup</span></a>
+                <?php else: ?>
+                    <a href="<?php echo Mage::getUrl('customer/account'); ?>"> <span class="login">My Account</span></a>
+                <?php endif; ?>
+                <!-- <input class="nav_search" placeholder="Search" /> -->
+                <span class="search_btn">
+                    <span></span>
+                </span>
+
+                <span class="cart_btn">
+                    <span><p>03</p></span>
+
+                </span>
+
+                <span class="mini_cart_close trans_pt4s">
+                    <span class="mini_cart_close_in"><span class="btn_arrow white_arrow btn_arrow_small"></span><p>Continue Shopping</p></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="search_opn trans_pt4s">
+        <div>
+            <?php echo $this->getChildHtml('topSearch') ?>
+        </div>
+    </div>
+<?php echo $this->getChildHtml('minicart_head') ?>
+    <!--<div class="mini_cart trans_pt4s">
+        <div class="mini_cart_in">
+            <div class="all_each_mini_cart">
+                <div class="all_each_mini_cart_in">
+
+                    <div class="each_mini_cart">
+                        <div class="each_mini_cart_in">
+                            <h3>Brainmap</h3>
+                            <p>Qty(1)</p>
+                            <span>Rs.12345</span>
+                            <b></b>
+                        </div>
+                    </div>
+                    <div class="each_mini_cart">
+                        <div class="each_mini_cart_in">
+                            <h3>Brainmap</h3>
+                            <p>Qty(1)</p>
+                            <span>Rs.12345</span>
+                            <b></b>
+                        </div>
+                    </div>
+                    <div class="each_mini_cart">
+                        <div class="each_mini_cart_in">
+                            <h3>Brainmap</h3>
+                            <p>Qty(1)</p>
+                            <span>Rs.12345</span>
+                            <b></b>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mini_cart_detail">
+                <div class="mini_cart_detail_in">
+                    <h4><span>Total</span> <span>Rs.2200</span></h4>
+                    <div><span>Shipping Charge</span> <span>0</span></div>
+                    <div><span>Other</span> <span>0</span></div>
+                    <h2><span>Grand Total</span> <span>Rs.2200</span></h2>
+                    <a class="btn_purple">Check out</a>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+</div>
+

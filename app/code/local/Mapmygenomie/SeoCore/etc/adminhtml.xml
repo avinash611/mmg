@@ -1,0 +1,24 @@
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mapmygenomie_seocore translate="title">
+                                        <title>Mapmygenomie SEO</title>
+                                    </mapmygenomie_seocore>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

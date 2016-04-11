@@ -1,0 +1,211 @@
+<?php
+/* facebook customer audience starts here */
+if (Mage::getStoreConfig('mapmygenomie_pixel/facebookcustomaudience/enable', Mage::app()->getStore()) == 1) {
+    ?>  
+    <?php
+    /* Product page Facebook Pixel Code starts here */
+    if ($this->ecomm_pagetype == 'product') {
+        if ($this->ecom_cat_names) {
+            $content_category = $this->ecom_cat_names[0];
+            if ($this->ecom_cat_names[1]) {
+                $content_category .= " > " . $this->ecom_cat_names[1];
+            }
+            if ($this->ecom_cat_names[2]) {
+                $content_category .= " > " . $this->ecom_cat_names[2];
+            }
+        } else {
+            $content_category = "";
+        }
+        ?>      
+        <script type="text/javascript">
+            fbq('track', 'ViewContent', {
+                content_type: 'product',
+                content_ids: '<?php echo $this->ecomm_prodid; ?>',
+                content_name: "<?php echo $this->ecom_gatags['name']; ?>",
+                content_category: "<?php echo addslashes($content_category); ?>",
+                value: <?php echo $this->ecomm_totalvalue; ?>,
+                currency: 'USD'
+            });
+        </script>        
+
+        <?php
+    }
+	else if($this->ecomm_pagetype == 'category') {
+		?>
+		<script>
+    //Runs Initially after products are loaded
+    jQuery(window).load(function () {
+		
+        jQuery('.products-grid li.item').each(function (index) {
+            runGaImpression(jQuery(this).data("id"), jQuery(this).data("name"), jQuery(this).data("category"), jQuery(this).data("list"), ++index);
+        });
+       ga('send', 'pageview');
+    });
+
+    //GA Impression Code
+    function runGaImpression(id, name, category, list, position) {
+        ga('ec:addImpression', {
+            'id': id, // Product details are provided in an impressionFieldObject.
+            'name': name,
+            'category': category,
+            'list': list,
+            'position': position // 'position' indicates the product position in the list.
+        });
+    }
+	
+
+   // });
+</script>
+		<?php
+	}
+    /* Product page Facebook Pixel Code ends here */
+
+    /* search page starts here */
+    if (($this->ecomm_pagetype == 'searchresults')) {
+        ?>
+        <!-- Custom Audience Pixel Code -->
+        <script>
+            fbq('track', 'Search', {
+                content_type: 'product',
+                search_string: "<?php echo addslashes($this->ecom_search_string); ?>",
+                content_category: "Product Search",
+                content_ids: '<?php echo $this->ecomm_prodid; ?>',
+                value: <?php echo $this->ecomm_totalvalue; ?>,
+                currency: 'USD'
+            });
+        </script>
+        <!-- End Custom Audience Pixel Code -->
+        <?php
+    }
+    /* search page ends here */
+
+
+    /* Cart page starts here */
+    if (($this->ecomm_pagetype == 'cart') || ($this->ecomm_onepage_index == 'onepagehome')) {
+        if ($this->ecomm_pagetype == 'cart') {
+            ?>                
+            <!-- Custom Audience Pixel Code -->
+            <script>
+                fbq('track', 'AddToCart', {
+                    content_name: 'Shopping Cart',
+                    content_ids: '<?php echo $this->ecomm_prodid; ?>',
+                    content_type: 'product',
+                    value: <?php echo $this->ecomm_totalvalue; ?>,
+                    currency: 'USD'
+                });
+            </script>
+            <!-- End Custom Audience Pixel Code -->
+
+            <?php
+        } else if ($this->ecomm_onepage_index == 'onepagehome') {
+            ?>
+            <!-- Custom Audience Pixel Code -->
+            <script>
+                fbq('track', 'InitiateCheckout', {
+                    content_name: 'Checkout',
+                    content_ids: '<?php echo $this->ecomm_prodid; ?>',
+                    content_type: 'product',
+                    value: <?php echo $this->ecomm_totalvalue; ?>,
+                    currency: 'USD',
+                    num_items: "<?php echo count($this->ecom_gatags); ?>",
+                    content_category: "Checkout"
+                });
+            </script>
+            <!-- End Custom Audience Pixel Code -->
+            <?php
+        }
+    }
+    /* Cart page ends here */
+
+    /* Thank you page starts here */
+    if (($this->ecomm_pagetype == 'success')) {
+        ?>
+        <script type="text/javascript">
+            fbq('track', 'Purchase', {
+                content_type: 'product',
+                content_ids: '<?php echo $this->ecomm_prodid; ?>',
+                num_items: <?php echo $this->ecomm_totalquantity; ?>,
+                value: <?php echo $this->ecomm_totalvalue; ?>,
+                currency: 'USD'
+            });
+        </script>        
+        <?php
+    }
+    /* Thank you page ends here */
+
+    /* First time successful registeration page  starts here */
+    if (($this->ecomm_pagetype == 'registerSuccess')) {
+        if ($this->isFirstTimeRegisterUser()) {
+            ?>
+            <!-- Custom Audience Pixel Code -->
+            <script>
+                fbq('track', 'CompleteRegistration', {
+                    content_name: "CompleteRegistration",
+                    value: 0,
+                    currency: 'USD',
+                    status: "CompleteRegistration"
+                });
+            </script>
+            <!-- End Custom Audience Pixel Code -->
+
+            <?php
+            $this->removeFristTimeRegisterSessionValue();
+        }
+    }
+    /* First time successful registeration page ends here */
+    ?>
+
+    <?php
+}
+/* facebook customer audience ends here */
+?>
+<script type="text/javascript">
+    /*var google_tag_params = {
+     ecomm_prodid: '<?php //echo $this->ecomm_prodid;  ?>',
+     ecomm_pagetype: "<?php //echo $this->ecomm_pagetype;  ?>",
+     ecomm_totalvalue: <?php //echo $this->ecomm_totalvalue;  ?>
+     };*/
+<?php
+if ($this->ecomm_onepage_index == "onepagehome") { //this is required to send the cart items to GA in checkout page
+    //print_r($this->ecom_gatags);die;
+    foreach ($this->ecom_gatags as $res) {
+        ?>
+            ga('ec:addProduct', {
+                'id': '<?php echo $res['id']; ?>',
+                'name': "<?php echo addslashes($res['name']); ?>",
+                'category': "<?php echo addslashes($res['category']); ?>",
+                'price': '<?php echo $res['price']; ?>',
+                'quantity': <?php echo $res['quantity']; ?>
+            });
+        <?php
+    }
+    ?>
+        ga('ec:setAction', 'checkout', {
+            'step': 1          // A value of 1 indicates this action is first checkout step.     
+        });
+        ga('send', 'pageview');
+
+<?php }
+?>
+<?php if ($this->ecomm_onepage_index == "onepagehome" && Mage::helper('customer')->isLoggedIn()) { //this is required to send the virtual url to GA if user login
+    ?>
+        ga("ec:setAction", "checkout", {step: 2, 'option': 'login'});
+        ga('send', 'pageview', 'checkout/international/onepage/user-login');
+        ga('send', 'event', 'Checkout Process', 'login', {
+            hitCallback: function () {
+                // Advance to shipping section.
+            }
+        });
+<?php } ?>
+</script>
+
+
+
+
+
+
+
+
+
+
+

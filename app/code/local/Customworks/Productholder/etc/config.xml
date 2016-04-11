@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<config>
+<global>   <helpers>      <productholder>          <class>Customworks_Productholder_Helper</class>      </productholder>  </helpers></global></config>

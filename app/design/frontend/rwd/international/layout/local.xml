@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <remove name="left.permanent.callout"/>
+        <remove name="right.permanent.callout"/>
+        <remove name="cart_sidebar"/>
+        <remove name="right.poll"/>
+        <remove name="paypal.partner.right.logo"/>
+        <remove name="left.newsletter"/> 
+        <remove name="catalog.compare.sidebar"/>
+        <remove name="right.reports.product.compared"/>
+        <remove name="left.reports.product.viewed"/> 
+        <remove name="top.links" />
+        <remove name="tags_popular" />
+        <reference name="root">
+            <update handle="page_one_column" />
+        </reference>
+        <reference name="head" as="head">
+            <action method="addCss">
+                <stylesheet>css/common.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/mmg_anim.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/animate.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/owl.carousel.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/owl.transitions.css</stylesheet>
+            </action>
+				<action method="removeItem">
+    	<type>js</type>
+    	<file>scriptaculous/builder.js</file>
+    </action>      
+		<!--<action method="removeItem">
+    	<type>js</type>
+    	<file>scriptaculous/effects.js</file>
+    </action>
+	 <action method="removeItem">
+    	<type>js</type>
+    	<file>scriptaculous/dragdrop.js</file>
+    </action>
+	<action method="removeItem">
+    	<type>js</type>
+    	<file>scriptaculous/controls.js</file>
+    </action>-->
+	<!--<action method="removeItem">
+      <type>js</type>
+      <file>mage/translate.js</file>
+    </action>	-->
+        </reference>
+		
+    </default>
+    <cms_page>
+        <reference name="content">
+            <action method="unsetChild">
+                <alias>cms.wrapper</alias>
+            </action>
+            <block type="cms/page" name="cms_page"/>
+        </reference>
+    </cms_page>
+    <catalog_category_layered>
+        <reference name="head">
+           
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+            <!--<remove name="header"/>
+            <block type="page/html_header" name="header.catalog" as="headercatalog" template="page/html/headercatalog.phtml">
+                <block type="core/template" name="top.search" as="topSearch" template="catalogsearch/form.mini.phtml"/>
+            </block>-->
+        </reference>
+        <!-- <reference name="left">
+            <block type="catalog/layer_view" name="catalog.leftnav" after="currency" template="catalog/layer/view.phtml">
+                <block type="core/text_list" name="catalog.leftnav.state.renderers" as="state_renderers" />
+            </block>
+        </reference>-->
+		
+    </catalog_category_layered>
+	<catalogsearch_result_index>
+		<reference name="head">
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+        </reference>
+	</catalogsearch_result_index>
+	<catalog_product_view>
+	<remove name="product_tag_list" />
+	 <reference name="head">
+            
+			  <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+			
+			<action method="removeItem">
+                <type>skin_js</type>
+                <name>js/main.js</name>
+            </action>
+			<!--<remove name="header"/>
+            <block type="page/html_header" name="header.catalog" as="headercatalog" template="page/html/headercatalog.phtml">
+                <block type="core/template" name="top.search" as="topSearch" template="catalogsearch/form.mini.phtml"/>
+            </block>-->
+		</reference>
+	</catalog_product_view>
+	<review_product_list>
+	 <reference name="head">
+		<action method="removeItem">
+                <type>skin_js</type>
+                <name>js/main.js</name>
+            </action>
+			
+			 <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+         <action method="removeItem">
+             <type>skin_css</type>
+             <name>css/product.css</name>
+         </action>
+
+           <!-- <action method="addCss">
+                <stylesheet>css/styles.css</stylesheet>
+            </action>-->
+            
+           <action method="addCss">
+                <stylesheet>css/review.css</stylesheet>
+            </action>
+         <action method="addCss">
+             <stylesheet>css/inside.css</stylesheet>
+         </action>
+			</reference>
+	</review_product_list>
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+
+            <action method="addCss">
+                <stylesheet>css/styles.css</stylesheet>
+            </action>
+            
+           <action method="addCss">
+                <stylesheet>css/checkout.css</stylesheet>
+            </action>
+
+            
+            
+        </reference>
+
+    </checkout_onepage_index>
+	<checkout_cart_index>
+	<reference name="head">
+	<action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+
+            <action method="addCss">
+                <stylesheet>css/styles.css</stylesheet>
+            </action>
+            
+           <action method="addCss">
+                <stylesheet>css/checkout.css</stylesheet>
+            </action>
+			 </reference>
+	
+	  </checkout_cart_index>
+    
+    <checkout_onepage_success>
+		<action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+		</action>
+
+		<action method="addCss">
+			<stylesheet>css/styles.css</stylesheet>
+		</action>
+		
+	    <action method="addCss">
+			<stylesheet>css/checkout.css</stylesheet>
+		</action>
+	</checkout_onepage_success>
+
+    <customer_account>
+        <reference name="head">
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+
+            <action method="addCss">
+                <stylesheet>css/styles.css</stylesheet>
+            </action>
+            
+           <action method="addCss">
+                <stylesheet>css/checkout.css</stylesheet>
+            </action>
+            
+        </reference>
+    </customer_account>
+	
+	 <customer_account_login>
+        <reference name="head">
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+
+            <action method="addCss">
+                <stylesheet>css/styles.css</stylesheet>
+            </action>
+            
+           <action method="addCss">
+                <stylesheet>css/checkout.css</stylesheet>
+            </action>
+            
+        </reference>
+    </customer_account_login>
+
+    <customer_account_create>
+        <reference name="head">
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+
+            <action method="addCss">
+                <stylesheet>css/styles.css</stylesheet>
+            </action>
+            
+           <action method="addCss">
+                <stylesheet>css/checkout.css</stylesheet>
+            </action>
+            
+        </reference>
+    </customer_account_create>
+	<customer_account_forgotpassword>
+        <reference name="head">
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+            </action>
+
+            <action method="addCss">
+                <stylesheet>css/styles.css</stylesheet>
+            </action>
+            
+           <action method="addCss">
+                <stylesheet>css/checkout.css</stylesheet>
+            </action>
+            
+        </reference>
+    </customer_account_forgotpassword>
+	<paypal_express_review>
+        <action method="removeItem">
+            <type>skin_css</type>
+            <name>css/styles.css</name>
+        </action>
+
+        <action method="addCss">
+            <stylesheet>css/styles.css</stylesheet>
+        </action>
+		
+        <action method="addCss">
+            <stylesheet>css/checkout.css</stylesheet>
+        </action>
+    </paypal_express_review>
+</layout>

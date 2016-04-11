@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <cms>
+            <children>
+                <mapmygenomie_career module="mapmygenomie_career">			
+                    <title>Career Management</title>
+                    <sort_order>95</sort_order>
+                    <children>
+                        <category translate="title" module="mapmygenomie_career">
+                            <title>Category</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/career_category</action>
+                        </category>
+                        <position translate="title" module="mapmygenomie_career">
+                            <title>Position</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/career_position</action>
+                        </position>
+                         <jobbackend translate="title" module="mapmygenomie_career">
+                            <title>Job Management</title>
+                            <sort_order>30</sort_order>
+                            <action>adminhtml/career_jobbackend</action>
+                        </jobbackend>
+                    </children>
+                </mapmygenomie_career>
+            </children>
+        </cms>
+    </menu>
+    
+    <!-- Access permissions -->
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <cms>
+                        <children>
+                            <mapmygenomie_career translate="title" module="mapmygenomie_career">
+                                <title>Career Management</title>
+                                <sort_order>40</sort_order>
+                                <children>
+                                    <category translate="title">
+                                        <title>Category</title>
+                                        <sort_order>10</sort_order>
+                                    </category>
+                                    <position translate="title">
+                                        <title>Position</title>
+                                        <sort_order>20</sort_order>
+                                    </position>
+                                      <jobbackend translate="title">
+                                        <title>Job Management</title>
+                                        <sort_order>30</sort_order>
+                                    </jobbackend>
+                                </children>                              
+                            </mapmygenomie_career>
+                        </children>
+                    </cms>
+                </children>
+            </admin>
+        </resources>
+    </acl>  
+</config>

@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: 
+Disallow: /mgadmin
+Sitemap: http://mapmygenome.in/international/sitemap.xml

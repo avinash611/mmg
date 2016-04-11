@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mworks_Pendingorders>
+            <version>0.0.0.1</version>
+        </Mworks_Pendingorders>
+    </modules>
+ 
+    <global>
+        <models>
+            <mworks_pendingorders>
+                <class>Mworks_Pendingorders_Model</class>
+            </mworks_pendingorders>
+        </models>
+ 
+        <resources>
+            <mworks_pendingorders_setup>
+                <setup>
+                    <module>Mworks_Pendingorders_Orders</module>
+                </setup>
+            </mworks_pendingorders_setup>
+        </resources>
+ 
+        <blocks>
+            <mworks_pendingorders>
+                <class>Mworks_Pendingorders_Block</class>
+            </mworks_pendingorders>
+        </blocks>
+ 
+        <helpers>
+            <mworks_pendingorders>
+                <class>Mworks_Pendingorders_Helper</class>
+            </mworks_pendingorders>
+        </helpers>
+    </global>
+ 
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <mworks_pendingorders before="Mage_Adminhtml">Mworks_Pendingorders_Adminhtml</mworks_pendingorders>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+	<adminhtml>
+		<layout>
+			<updates>
+				<mworks_pendingorders>
+					<file>pendingorders.xml</file>
+				</mworks_pendingorders>
+			</updates>
+		</layout>
+	</adminhtml>
+</config>

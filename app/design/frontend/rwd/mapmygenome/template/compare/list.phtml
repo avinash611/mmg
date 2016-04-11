@@ -1,0 +1,93 @@
+<?php
+$compareProducts = $this->getCompareProducts();
+$comparefeatures = array();
+if (!empty($compareProducts)) {
+    echo '<div class="compare-wrapper">';
+    /* slider section starts here */
+    echo ' <div class="slide-section">';
+    echo '<div class="slide1 slide active">';
+    echo '<ul class="slide-item-wrap">';
+    foreach ($compareProducts as $product) {
+        ?>         
+        <li class="slide-item">
+            <div class="slide-wrapper">
+                <div class="left-block slide-block">
+                    <img src="<?php echo $this->helper('catalog/image')->init($product, 'image') ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" title="<?php echo $this->escapeHtml($product->getName()); ?>" />
+                </div>
+                <div class="right-block slide-block">
+                    <p><?php echo $product->getShortDescription(); ?></p>
+                </div>
+            </div>
+        </li> 
+        <?php
+        //  print_r($this->getOptionImages($product));die;
+        if (!in_array($comparefeatures[$product->getSku()], $product->getSku())) {
+            $comparefeatures[$product->getSku()] = $this->getOptionImages($product);
+            $allowed = explode(",", $product->getCompare());
+            $comparefeatures[$product->getSku()]['optionid'] = $allowed;
+        }
+    }
+    ?>
+    </ul>
+    </div>     
+
+    </div>
+    <!-- slider section ends here -->
+    <!-- compare section starts here -->
+    <?php
+    if (!empty($comparefeatures)) {
+        echo '<div class="compare-features">';
+        echo '<div class="feature-wrapper">';
+        foreach ($comparefeatures as $key => $compareitems) {
+            if (!empty($compareitems['optionid'])) {
+                echo '<div class="traits">';
+                echo '<div class="trait-title">' . $compareitems[$key]['productname'] . '</div>';
+                echo '<div class="trait-feature">';
+                foreach ($compareitems['optionid'] as $optionid) {
+                    // echo $compareitems[$optionid]['image_url'];die;
+                    echo '<div class="feature-image" data-hover="' . $compareitems[$optionid]['name'] . '">';
+                    ?>
+                    <div class="icon-bg" style="background-image:url(<?php echo $compareitems[$optionid]['image_url'] ?>)"></div>
+                    <?php
+                    echo '</div>';
+                }
+
+                echo '</div>';
+                echo '</div>';
+            }
+        }
+
+        echo '</div>';
+        echo '</div>';
+    }
+    ?>
+    <!-- compare section ends here -->
+    
+<?php echo '</div>'; }
+?>
+<script>
+    jQuery(document).ready(function(){
+        jQuery('.feature-image').tipsy({gravity: 's',title:'data-hover'});
+
+
+        jQuery(".slide-item-wrap").owlCarousel({
+
+            //autoPlay: 3000, //Set AutoPlay to 3 seconds
+            singleItem : true,
+            slideSpeed : 1000,
+            navigation: true,
+            pagination:true,
+            transitionStyle : "fade"
+
+        });
+
+        jQuery('.feature-image img').mouseenter(function(){
+            jQuery(this).attr('src',jQuery(this).attr('data-mouseover'));
+
+        }).mouseleave(function(){
+            jQuery(this).attr('src',jQuery(this).attr('data-mouseleave'));
+        })
+
+    });
+</script>
+

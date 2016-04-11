@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<layout>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label">
+                <name>register</name>
+                <path>kit/register/</path>
+                <label>Register Your Kit</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <registerkit_register_index translate="label">
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <label>Register Your Kit</label>
+            <block type="registerkit/registerkit" name="register"/>
+        </reference>
+    </registerkit_register_index>
+
+    <registerkit_register_new translate="label">
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <label>Registration Form</label>
+            <block type="registerkit/form" name="form" template="mmg/registerkit/form.phtml"/>
+        </reference>
+    </registerkit_register_new>
+</layout>

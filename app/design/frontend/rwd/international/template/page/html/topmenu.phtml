@@ -1,0 +1,61 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Page_Block_Html_Topmenu
+ */
+?>
+<?php $_menu = $this->getHtml('level-top') ?>
+        <li class="withSubNav"><a href="javascript:void(0);"><span class="trans_pt4s">Shop <p class="trans_pt4s"></p></span></a>
+            <ul class="subnav trans_pt4s">
+                <?php if ($_menu): ?>                 
+                       <!-- <li class="nav-primary">-->
+                            <?php echo $_menu ?>
+                        <!--</li>  -->               
+                <?php endif ?>  
+            </ul>
+        </li>
+       <li  class="withSubNav"><a><span class="trans_pt4s">About Us <p class="trans_pt4s"></p></span></a>
+            <ul class="subnav trans_pt4s">
+                <li><a href="<?php echo $this->getUrl('').'about-us'?>">About Mapmygenome</a></li>
+                <li><a href="<?php echo $this->getUrl('').'about-us/board-of-directors'?>">Board of Directors</a></li>
+                <li><a href="<?php echo $this->getUrl('').'about-us/ourteam'?>">Our Team</a></li>
+                <li><a href="<?php echo $this->getUrl('').'about-us/expert-panel-of-doctors'?>">Expert panel of Doctors</a></li>
+                <li><a href="<?php echo $this->getUrl('').'about-us/scientific-advisory-board'?>">Scientific Advisory Board</a></li>
+                <li><a href="<?php echo $this->getUrl('').'about-us/our-partners'?>">Our Partners</a></li>
+                <li><a href="<?php echo $this->getUrl('').'about-us/logistics'?>">Logistics</a></li>
+                <li><a href="<?php echo $this->getUrl('').'about-us/data-confidentiality'?>">Data Confidentiality</a></li>
+				<li><a href="<?php echo $this->getUrl('').'careers'?>">Careers</a></li>
+            </ul>
+        </li>       
+        <li><a href="<?php echo $this->getUrl('').'faqs'?>"><span class="trans_pt4s">FAQs <p class="trans_pt4s"></p></span></a></li>
+        <li><a href="http://mapmygenome.in/blog" target="_blank"><span class="trans_pt4s">Blog <p class="trans_pt4s"></p></span></a></li>
+        <li><a href="<?php echo $this->getUrl('contacts')?>"><span class="trans_pt4s">Contact Us <p class="trans_pt4s"></p></span></a></li>
+		
+	

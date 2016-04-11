@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <homepageblocks_adminhtml_homepageblocks_index>
+        <reference name="content">
+            <block type="homepageblocks/adminhtml_homepageblocks" name="homepageblocks" />
+        </reference>
+    </homepageblocks_adminhtml_homepageblocks_index>
+</layout>

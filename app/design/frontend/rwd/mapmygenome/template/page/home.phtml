@@ -1,0 +1,469 @@
+<div class="intro trans_pt4s">
+    <div class="nav_social">
+        <a  href="https://plus.google.com/+Mapmygenomeindia/posts" rel="nofollow" target="_blank" class="trans_pt4s"><span class="socicon socicon-google trans_pt4s"></span></a>
+        <a  href="https://twitter.com/mapmygenomein" rel="nofollow" target="_blank" class="trans_pt4s"><span class="socicon socicon-twitter trans_pt4s"></span></a>
+        <a href="https://www.facebook.com/Mapmygenome.in" rel="nofollow" target="_blank" class="trans_pt4s"><span class="socicon socicon-facebook trans_pt4s"></span></a>
+    </div>
+    <?php
+   $list = Mage::getModel('homepagebanner/banner')->getCollection()
+            ->addFieldToFilter('status', 1)
+            ->setOrder('position', 'asc');
+
+    $banner = $list->getFirstItem();
+    ?>
+   <div class="owl-carousel"  id="owl-demo-intro" >
+        <div class="item">
+
+            <h1 class="all_caps color_white"><?php echo $banner->homepagebanner_text ?></h1>
+            <!-- <figure id="mouse-pointer"></figure> -->
+        </div>
+        <div class="item">
+            <h2 class="color_white all_caps"><?php echo $banner->homepagebanner_text1 ?></h2>
+            <!-- <figure id="mouse-pointer"></figure> -->
+        </div>
+        <div class="item">
+            <h2 class="color_white all_caps"><?php echo $banner->homepagebanner_text2 ?></h2>
+            <!-- <figure id="mouse-pointer"></figure> -->
+        </div>
+    </div>
+    <?php
+    $counter = 0;
+    foreach ($list as $item) :
+        ?>    
+        <a href="<?php echo $item->url ?>">
+            <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $item->image ?>" alt="" />
+        </a>
+    </div>
+    <?php $counter++; ?>
+<?php endforeach; ?>
+<div class="intro_grad trans_pt4s" data-color-start="rgb(89, 69, 174)" data-color-end="rgb(97, 218, 168)"></div>
+<!-- <a class="mmg_app_logo"><span></span><p>Mapmygenome</p></a> -->
+
+
+
+<div class="intro_arrow">
+    <div class="intro_arrow_in">
+        <div class="intro_arrow1 intro_arrow_each trans_pt4s"></div>
+        <div class="intro_arrow2 intro_arrow_each trans_pt4s"></div>
+    </div>
+</div>
+
+<!-- <div class="dashes">
+    <span class="dash"></span>
+    <span class="dash"></span>
+    <span class="dash"></span>
+</div> -->
+
+</div>
+<!-- intro ends here -->
+
+<?php $homeBlocks = Mage::getModel('homepageblocks/homepageblocks')->load(1);
+//Mage::log($homeBlocks, null, 'chanxz.log'); ?>
+
+<div class="kma site-width">
+    <div class="kma_left">
+        <div class="kma_left_1 kmas">
+		<a href="<?php echo $this->getUrl('') ?>personal-genomics/genomepatrifit">
+            <img class="kma_img" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'homepageBlocks/' . $homeBlocks->homepageblock3_image ?>">
+            <h3 class="color_green">
+                <span class="thin"><span class="trans_pt4s"><?php echo $homeBlocks->homepageblock3_title; ?>
+                <span class="small color_green"><?php echo $homeBlocks->homepageblock3_link_text; ?></span>
+            </h3>
+            <div class="grad_gray grad_color trans_pt4s"></div>
+			</a>
+        </div>
+        <div class="kma_signup trans_pt4s">
+           <a href="<?php echo $this->getUrl('') ?>personal-genomics"> 
+		   <div class="kma_signup_table">
+                <h3 class="color_white">
+                    <span class="thin">Shop </span>More Products<br/>
+                    <p class="color_white font_normal" style="line-height:1.4em;">Browse through a comprehensive collection of products specializing in <br/>
+                        <span class="thicker">Personal Genomics</span> , <span class="thicker">Brain Wellness</span> and <span class="thicker">Molecular Diagnostics</span></p>
+                </h3>
+            </div>
+            <div class="arrow_right arrow_small">
+                <div class="arrow_in">
+                    <span class="arrow_each1 arrow_each"></span>
+                    <span class="arrow_each2 arrow_each"></span>
+                </div>
+            </div>
+            <div id="box"></div>
+			</a>
+        </div>
+    </div>
+
+    <div class="kma_right">
+
+        <div class="kma_right_1 kmas">
+            <a href="<?php echo $this->getUrl('') ?>brain-wellness/gpkbrain"><img class="kma_img" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'homepageBlocks/' . $homeBlocks->homepageblock6_image ?>">
+            <h3 class="color_green">
+                <span class="thin"><span class="trans_pt4s"><?php echo $homeBlocks->homepageblock5_title; ?>
+                <span class="small color_green"><?php echo $homeBlocks->homepageblock5_link_text; ?></span>
+            </h3>
+            <div class="grad_white grad_color trans_pt4s"></div>
+			</a>
+        </div>
+
+        <div class="kma_right_2 kmas">
+             <a href="<?php echo $this->getUrl('') ?>personal-genomics/genomepatri"><img class="kma_img" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'homepageBlocks/' . $homeBlocks->homepageblock5_image ?>">
+            <h3 class="color_green">
+                <span class="thin"><span class="trans_pt4s"><?php echo $homeBlocks->homepageblock6_title; ?>
+                <span class="small color_green"><?php echo $homeBlocks->homepageblock6_link_text; ?></span>
+            </h3>
+            <div class="grad_gray grad_color trans_pt4s"></div>
+			</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Genomepatri test -->
+<?php 	
+	$collectionTests = Mage::getModel('mapmygenomie_owlcarousal/owlcarousalinfo')->getCollection()
+				->addFieldToFilter('carousal_status', 1)
+				->addFieldToFilter('category_id', 1)
+				 ->setOrder('carousal_priority', 'desc');
+?>
+<div class="genome_test_wrapper padd_tb_30">
+    <h1 class="head genome_head trans_pt4s"><span class="head_align">Genomepatri™ Test<span></span></span></h1>
+    <div class="genome_test_done max_width owl-carousel owl-demo-cmn"  id="owl-demo" >
+	<?php
+		$i = 0;
+		if( sizeof($collectionTests) > 0 ) {
+			foreach($collectionTests as $data) {
+	?>
+				<div class="item" data-text="<?php echo $data->getData('carousal_headtitle'); ?>">
+					<div class="test_done_table <?php echo ($i == 0) ? 'trans_pt4s' : ''; ?>">
+						<div  class="test_done_table_cell">
+							<h3>
+								<span class="color_green"><span class="thin">How's the</span> test done?</span>
+								<?php echo $data->getData('carousal_description'); ?>
+							</h3>
+						</div>
+					</div>
+					<div class="test_done_table <?php echo ($i == 0) ? 'trans_pt4s' : ''; ?>">
+						<div  class="test_done_table_cell">
+							<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$data->getData('carousal_image');?>">
+						</div>
+					</div>
+				</div>
+	<?php 
+				$i++;
+			}
+		}
+	?>	
+
+    </div>
+
+    <div class="customNavigation">
+        <a class="btn prev prev1">
+            <span class="btn_in ie-prev-nav"> <span class="trans_pt4s"></span><span class="trans_pt4s"></span> </span>
+        </a>
+        <a class="btn next next1">
+            <span class="btn_in ie-next-nav"> <span class="trans_pt4s"></span><span class="trans_pt4s"></span> </span>
+        </a>
+    </div>
+</div>
+
+<div class="genome_test_other">
+    <div class="left50 trans_pt4s">
+        <div class="genome_test_other_in">
+            <h3 class="text_center">
+                <span class="color_white"><span class="thin">Why</span> Genomepatri?</span>
+                <p>Genomepatri is a revolutionary test that gives you an insight into your genetic predisposition and provides a road map for your wellness.<br/><br/></p>
+            </h3>
+            <div class="btn_holder text_center">
+                <a target="_blank" class="mgm_btn mgm_btn_white trans_pt4s" href="http://mapmygenome.in/blog/2015/04/20/five-great-reasons-to-invest-in-a-genomepatri/">
+                    <span class="btn_text">Know More</span>
+                    <span class="btn_arrow white_arrow btn_arrow_small"></span>
+                </a>
+            </div>
+            <!-- <a class="flyText" href="http://mapmygenome.in/personal-genomics/genomepatri" target="_blank"><span>What is Genome?</span></a> -->
+        </div>
+    </div>
+    <div class="left50 trans_pt4s">
+        <div class="genome_test_other_in">
+            <h3 class="text_center">
+                <span class="color_white"><span class="thin">Now</span> What?</span>
+                <p>Our team of expert genetic counselors have your best interests at heart and work towards helping you achieve your wellness potential by providing you with strong insights and healthy practices for your future. </p>
+            </h3>
+
+            <div class="btn_holder text_center">
+                <a class="mgm_btn mgm_btn_white trans_pt4s" href="<?php echo Mage::getBaseUrl().'personal-genomics/genomepatri'?>">
+                    <span class="btn_text">Buy Now</span>
+                    <span class="btn_arrow white_arrow btn_arrow_small"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- costomer reviews -->
+<?php 	
+		$collectionCustomerReviews = Mage::getModel('mapmygenomie_owlcarousal/owlcarousalinfo')->getCollection()
+					->addFieldToFilter('carousal_status', 1)
+					->addFieldToFilter('category_id', 2)
+					 ->setOrder('carousal_priority', 'asc');
+		$collectionCustomerReviews->getSelect()->limit(4);
+?>
+<div class="customer_review padd_tb_30">
+    <h1 class="head trans_pt4s"><span class="head_align">Customer Reviews<span></span></span></h1>
+    <!-- <div class="other_nav color_gray">
+        <span class="active">Shashi Taroor</span>/<span>Azhar Uddin</span>/<span>Neha Ladha</span>/<span>Renuka Vasu</span>
+    </div> -->
+
+    <!-- slider -->
+    <div class="genome_test_done owl-carousel owl-demo-cmn"  id="owl-demo2" >
+	
+	<?php
+		if( sizeof($collectionCustomerReviews) > 0 ) {
+			foreach($collectionCustomerReviews as $data) {
+	?>
+        <div class="item">
+            <div class="test_done_table">
+                <div  class="test_done_table_cell">
+                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$data->getData('carousal_image');?>" class="trans_pt4s" title="<?php echo $data->getData('carousal_headtitle'); ?>">                     
+                </div>
+            </div>
+            <div class="test_done_table">
+                <div  class="test_done_table_cell">
+                    <h3>
+                       <a href="<?php echo Mage::getUrl('testimonial');?>" class="anchor-color" title="<?php echo $data->getData('carousal_headtitle'); ?>"><span class="color_green"><span class="thin"> <?php echo $data->getData('carousal_headtitle'); ?></span></span></a>
+                        <!-- <span class="italic color_gray_d">“ Perfect for the novice. Don't be afraid you won't understand DNA.“</span> -->
+                         <?php $description = $data->getData('carousal_description'); ?>
+                                                                                                        <?php echo Mage::helper('core/string')->truncate($description, $length = 300, $etc = '...', $remainder = '', $breakWords = true);?>
+                    </h3>
+                </div>
+            </div>
+        </div>
+	<?php 
+			}
+		}
+	?>
+
+    </div>
+
+    <!-- slider ends-->
+
+</div>
+
+<!-- costomer reviews -->
+<?php
+$json_response = Mage::helper('productholder')->getProductsBasedOnAgeGroupAndGender();
+	/*
+	$collection = Mage::getResourceModel('catalog/product_collection');
+	$collection->addAttributeToSelect('name'); 
+	$collection->addAttributeToFilter('homepage_age_filters', array('notnull' => 1)); //get not null value
+	$collection->addAttributeToFilter('homepage_age_filters', array('neq' => '133')); //none value
+	$collection->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
+	
+	$ageArray = array();
+	$productsFilteredByAge = array();
+	
+	$attribute = Mage::getModel('eav/config')->getAttribute('catalog_product', 'homepage_age_filters');
+	foreach ($attribute->getSource()->getAllOptions(true, true) as $instance) {
+		if($instance['label'] != 'none') { //remove "none" value
+			$ageArray[$instance['value']] = $instance['label'];
+		}
+	}
+	 
+	foreach ($collection as $_product) {    
+		//echo $_product->getId() . ' --- ';
+		//echo $_product->getAttributeText('homepage_age_filters') . '<br>';
+		
+		$product = Mage::getModel('catalog/product');
+		$product->load($_product->getId());
+		
+		$image_url = (string)Mage::helper('catalog/image')->init($product, 'image')->resize(200,200); // get image url
+			
+		if(is_array($product->getAttributeText('gender'))) { //if mutiple values are selected ex: male,unisex
+			foreach($product->getAttributeText('gender') as $gender) {
+				if(sizeof($productsFilteredByAge [trim($gender)] [$ageArray[$_product->getData('homepage_age_filters')]]) < 3) { // only 3 products per age category
+					$productsFilteredByAge [trim($gender)] [$ageArray[$_product->getData('homepage_age_filters')]] [] = array('product_id' => $_product->getId(), 'product_url' => $_product->getProductUrl(), 'product_image' => $image_url, 'product_name' => $this->htmlEscape($_product->getName()));
+				}
+			}
+		} else { // single value selected
+			if(sizeof($productsFilteredByAge [trim($product->getAttributeText('gender'))] [$ageArray[$_product->getData('homepage_age_filters')]]) < 3) { // only 3 products per age category
+				$productsFilteredByAge [trim($product->getAttributeText('gender'))] [$ageArray[$_product->getData('homepage_age_filters')]] [] = array('product_id' => $_product->getId(), 'product_url' => $_product->getProductUrl(), 'product_image' => $image_url, 'product_name' => $this->htmlEscape($_product->getName()));
+			}
+		}
+	}
+	
+	//print_r($ageArray);
+	$json_response = '';
+	$json_response = (json_encode($productsFilteredByAge));
+	//echo $json;*/
+?>
+<script>
+	 var filtered_data = (Object.keys(<?php echo $json_response ?>).length) ?<?php echo $json_response ?> : new Object();
+	  //var filtered_data = <?php echo $json_response ?>;
+</script>
+
+<div class="more_products bg_white padd_tb_30">
+    <h1 class="head more_head trans_pt4s"><span class="head_align">More Products<span></span></span></h1>
+    <div class="other_nav color_gray">
+        <span class="active male_click">Male</span>/<span class="female_click">Female</span>
+    </div>
+    <div class="products_agewise male animated">
+        <div class="age_dial" onclick="getFilteredData('Male','5-18', this)">
+            <div class="age_dial_face age6_15 trans_pt4s">
+            </div>
+            <p>5-18 Yrs</p>
+            <span class="btn_arrow down_arrow green_arrow btn_arrow_big"></span>
+        </div>
+
+        <div class="age_dial active" onclick="getFilteredData('Male','18-35', this)">
+            <div class="age_dial_face age26_35 trans_pt4s">
+            </div>
+            <p>18-35 Yrs</p>
+            <span class="btn_arrow down_arrow green_arrow btn_arrow_big"></span>
+        </div>
+
+        <div class="age_dial" onclick="getFilteredData('Male','35-50', this)">
+            <div class="age_dial_face age36_45 trans_pt4s">
+            </div>
+            <p>35-50 Yrs</p>
+            <span class="btn_arrow down_arrow green_arrow btn_arrow_big"></span>
+        </div>
+
+        <div class="age_dial" onclick="getFilteredData('Male','50-70', this)">
+            <div class="age_dial_face age46_55 trans_pt4s">
+            </div>
+            <p>50-70 Yrs</p>
+            <span class="btn_arrow down_arrow green_arrow btn_arrow_big"></span>
+        </div>
+
+    </div>
+
+    <div class="products_agewise female animated">
+        <div class="age_dial" onclick="getFilteredData('Female','5-18', this)">
+            <div class="age_dial_face age6_15 trans_pt4s">
+            </div>
+            <p>5-18 Yrs</p>
+            <span class="btn_arrow down_arrow green_arrow btn_arrow_big"></span>
+        </div>
+
+        <div class="age_dial active" onclick="getFilteredData('Female','18-35', this)">
+            <div class="age_dial_face age26_35 trans_pt4s">
+            </div>
+            <p>18-35 Yrs</p>
+            <span class="btn_arrow down_arrow green_arrow btn_arrow_big"></span>
+        </div>
+
+        <div class="age_dial" onclick="getFilteredData('Female','35-50', this)">
+            <div class="age_dial_face age36_45 trans_pt4s">
+            </div>
+            <p>35-50 Yrs</p>
+            <span class="btn_arrow down_arrow green_arrow btn_arrow_big"></span>
+        </div>
+
+        <div class="age_dial" onclick="getFilteredData('Female','50-70', this)">
+            <div class="age_dial_face age46_55 trans_pt4s">
+            </div>
+            <p>50-70 Yrs</p>
+            <span class="btn_arrow down_arrow green_arrow btn_arrow_big"></span>
+        </div>
+    </div>
+
+    <div class="other_pro_list">
+        <div class="other_pro_list_in trans_pt4s" id="product-block-detail">
+           
+        </div>
+    </div>
+</div>
+
+<!-- costomer reviews -->
+<?php $base = Mage::getBaseUrl(); ?>
+<div class="blog bg_white_green padd_tb_30">
+
+    <h1 class="head trans_pt4s"><span class="head_align">Latest from blog<span></span></span></h1>
+    <div class="blog_lists max_width">
+	<?php $latest_blog =  Mage::helper('productholder')->LatestBlog(3);
+	 if($latest_blog->status != "error") { ?>
+        <ul>
+		
+		
+		<?php foreach($latest_blog->posts as $resblog): ?>
+            <li>
+                <a target="_blank" href="<?php echo $resblog->url;?>">
+                    <?php if($resblog->thumbnail_images->full->url) {
+						if(Mage::getStoreConfig("web/secure/use_in_frontend")){                                                               					$blogImageUrl =preg_replace("/^http:/i", "https:", $resblog->thumbnail_images->full->url);
+																														}else{                                                                                                            				$blogImageUrl=$resblog->thumbnail_images->full->url;
+																														}
+
+					?><span><img src="<?php echo($blogImageUrl); ?>" class="trans_pt4s"></span>
+					<?php } ?>
+                    <span class="trans_pt4s">
+                        <h4><?php echo $resblog->title;?></h4>
+                        <p><?php print strip_tags($resblog->excerpt);?></p>
+                    </span>
+                </a>
+            </li>
+			<?php endforeach; ?>    
+          
+        </ul>
+		
+		<?php  } ?>
+    </div>
+</div>
+
+<!-- Media reviews -->
+<?php 	
+	$collectionMediaReviews = Mage::getModel('mapmygenomie_owlcarousal/owlcarousalinfo')->getCollection()
+				->addFieldToFilter('carousal_status', 1)
+				->addFieldToFilter('category_id', 3);
+?>
+<div class="media bg_white padd_tb_30">
+
+    <h1 class="head trans_pt4s"><span class="head_align">Media Reviews<span></span></span></h1>
+    <div class="media_in owl-carousel"  id="owl-demo3">
+	
+	<?php
+		if( sizeof($collectionMediaReviews) > 0 ) {
+			foreach($collectionMediaReviews as $data) {
+	?>
+        <div class="item" data-text="<?php echo $data->getData('carousal_headtitle'); ?>">
+            <div class="test_done_table">
+                <div  class="test_done_table_cell">
+                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$data->getData('carousal_image');?>" class="trans_pt4s">                     
+                </div>
+            </div>
+            <div class="test_done_table">
+                <div  class="test_done_table_cell">
+                    <h3>
+                        <span class="color_green"><span class="thin"><?php echo $data->getData('carousal_smalldesc'); ?></span></span>
+                        <?php echo $data->getData('carousal_description'); ?>
+                    </h3>
+                </div>
+            </div>
+        </div>
+	<?php 
+			}
+		}
+	?>		
+    </div>
+</div>
+
+<script>
+	jQuery(function() {
+		   if (Object.keys(filtered_data).length) {
+		getFilteredData('Male', '18-35', '');
+		   }
+	});
+	function getFilteredData(cat, group, element) {
+		var innerHTML = '';
+		 if ((filtered_data[cat][group] != undefined)) {
+			jQuery.each(filtered_data[cat][group], function( k, v) {
+				innerHTML += '<a href="'+ v.product_url +'"><div class="pro trans_pt4s"><div><img class="trans_pt4s" src="'+ v.product_image +'"><p class="trans_pt4s">'+ v.product_name +'</p></div></div></a>';
+			});
+		}
+		
+		jQuery('#product-block-detail').empty();
+		jQuery('#product-block-detail').html(innerHTML);
+		
+		 jQuery('#product-block-detail').empty();
+         jQuery('#product-block-detail').html(innerHTML);
+         jQuery(".intro_arrow1").addClass("rotate_arrow_1");
+         jQuery(".intro_arrow2").addClass("rotate_arrow_2");
+	}
+</script>

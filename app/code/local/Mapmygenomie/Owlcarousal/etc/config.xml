@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mapmygenomie_Owlcarousal>
+            <version>0.1.0</version>
+        </Mapmygenomie_Owlcarousal>
+    </modules>
+    <global>
+        <helpers>
+            <mapmygenomie_owlcarousal>
+                <class>Mapmygenomie_Owlcarousal_Helper</class>
+            </mapmygenomie_owlcarousal>
+        </helpers>
+        
+        <blocks>
+            <mapmygenomie_owlcarousal>
+                <class>Mapmygenomie_Owlcarousal_Block</class>
+            </mapmygenomie_owlcarousal>
+        </blocks>
+        
+        <models>
+            <mapmygenomie_owlcarousal>
+                <class>Mapmygenomie_Owlcarousal_Model</class>
+                <resourceModel>mapmygenomie_owlcarousal_resource</resourceModel>
+            </mapmygenomie_owlcarousal>
+            <mapmygenomie_owlcarousal_resource>
+                <class>Mapmygenomie_Owlcarousal_Model_Resource</class>
+                <entities>
+                    <owlcarousalinfo>
+                        <table>mapmygenomie_owlcarousal_owlcarousalinfo</table>
+                    </owlcarousalinfo>					
+                </entities>
+            </mapmygenomie_owlcarousal_resource>
+        </models>
+        
+		
+        <resources>
+            <mapmygenomie_owlcarousal_setup>
+                <setup>
+                    <module>Mapmygenomie_Owlcarousal</module>
+                </setup>
+            </mapmygenomie_owlcarousal_setup>
+        </resources>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <mapmygenomie_owlcarousal after="Mage_Adminhtml">Mapmygenomie_Owlcarousal_Adminhtml</mapmygenomie_owlcarousal>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>  	
+    <adminhtml>
+        <layout>
+            <updates>
+                <mapmygenomie_owlcarousal>
+                    <file>mapmygenomie_owlcarousal.xml</file>
+                </mapmygenomie_owlcarousal>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

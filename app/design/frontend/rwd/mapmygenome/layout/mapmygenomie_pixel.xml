@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<layout>
+    <default>
+        <reference name="before_body_end">
+            <block type="mapmygenomie_pixel/page" name="mapmygenomie_pixel_init_js"
+                   template="pixel/js/every_page.phtml"/>
+        </reference>
+		
+    </default>  
+</layout>
+
+

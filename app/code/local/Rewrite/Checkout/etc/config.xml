@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Rewrite_Checkout>
+            <version>0.1.0</version>
+        </Rewrite_Checkout>
+    </modules>	
+    <frontend>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <Rewrite_Checkout before="Mage_Checkout">Rewrite_Checkout</Rewrite_Checkout>						
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+    </frontend>
+
+</config>
+
+
+

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    22Feet
+ * @package     GuestInfo
+ * @author      Binu  <binuconcept@gmail.com,9986442330>
+ */
+-->
+<config>
+  <modules>
+      <Mapmygenomie_Guestinfo>
+          <version>1.0.0</version>
+      </Mapmygenomie_Guestinfo>
+  </modules>
+  <admin>
+      <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <mapmygenomie_guestinfo after="Mage_Adminhtml">Mapmygenomie_Guestinfo_Adminhtml</mapmygenomie_guestinfo>
+                    </modules>
+                </args>
+            </adminhtml> 
+      </routers>
+  </admin>
+  
+   <adminhtml>  
+        <layout>
+            <updates>
+                <mapmygenomie_guestinfo>
+                    <file>mapmygenomie_guestinfo.xml</file>
+                </mapmygenomie_guestinfo>
+            </updates>
+        </layout>
+    </adminhtml>    
+
+    <global>
+        <helpers>
+            <mapmygenomie_guestinfo>
+                <class>Mapmygenomie_Guestinfo_Helper</class>
+            </mapmygenomie_guestinfo>
+        </helpers>        
+        <models>
+            <mapmygenomie_guestinfo>
+                <class>Mapmygenomie_Guestinfo_Model</class>
+                <resourceModel>guestinfo_mysql4</resourceModel>
+            </mapmygenomie_guestinfo>
+            <guestinfo_mysql4>
+                <class>Mapmygenomie_Guestinfo_Model_Mysql4</class>
+                <entities>
+                    <guestinfo>
+                        <table>sales_flat_order</table>
+                    </guestinfo>
+                </entities>
+            </guestinfo_mysql4>
+        </models> 
+        <resources>
+            <mapmygenomie_guestinfo_setup>
+                <setup>
+                    <module>Mapmygenomie_Guestinfo</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mapmygenomie_guestinfo_setup>
+            <mapmygenomie_guestinfo_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mapmygenomie_guestinfo_write>
+            <mapmygenomie_guestinfo_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mapmygenomie_guestinfo_read>
+        </resources>
+        <blocks>
+            <mapmygenomie_guestinfo>
+                <class>Mapmygenomie_Guestinfo_Block</class>
+            </mapmygenomie_guestinfo>
+        </blocks>   
+    </global>
+</config>

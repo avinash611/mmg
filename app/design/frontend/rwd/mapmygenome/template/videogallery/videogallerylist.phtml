@@ -1,0 +1,89 @@
+<?php $allVideos = $this->getAllVideos(); ?>
+<?php
+$count = count($allVideos);
+if ($count == 0) {
+    ?>
+    <p class="note-msg">There are no videos matching the selection.</p>
+    <?php
+}
+if ($count >= 1) {
+    ?>
+    <div class="video-wrapper">
+        <div class="video-fs-overlay">
+            <div class="video-fs-overlay-content nodesc">
+                <a href="javascript:void(0);" class="close">X</a>
+                <iframe id="mainvideo"  src="" frameborder="0" allowfullscreen></iframe>
+                <div class="video-desc" id="main-video-desc">                   
+                </div>                
+            </div>        
+        </div>
+        <ul class="video-list">  
+            <?php
+            foreach ($allVideos as $videos) {
+                if ($videos->isexternal_video == 1) {//you tube video
+                    ?>
+                    <li class="item-wrapper">
+                        <div class="video-item youtubevideo-item">                
+                            <div class="video-play">
+                                <img src="<?php echo Mage::getBaseUrl('media') . $videos->video_image; ?>" class="fluid" title="<?php echo $videos->video_name; ?>" />
+                                <div class="youtube-video-overlay" data-embededid="<?php echo $videos->videoembedded_id; ?>">
+                                    <img src="<?php echo $this->getSkinUrl('images/play.png'); ?>"  class="play-button"/>
+                                </div>    
+                            </div>
+                            <?php if ($videos->video_name) { ?>
+                                <h2 class="video-title"><?php echo $videos->video_name; ?></h2>
+                            <?php } ?>
+                            <?php if ($videos->video_description) { ?>
+                                <div class="video-desc hide"><?php echo $videos->video_description; ?></div>
+                            <?php } ?>                               
+                   <!--<p class="post-date">Published on 12/1/2016</p>-->
+                        </div>
+                    </li>
+                <?php } else { //external video ?>
+                    <li class="item-wrapper">
+                        <a href="<?php echo $videos->videogallery_url; ?>" title="<?php echo $videos->video_name; ?>" target="_blank">
+                            <div class="video-item">                
+                                <div class="video-play">
+                                    <img src="<?php echo Mage::getBaseUrl('media') . $videos->video_image; ?>" class="fluid" title="<?php echo $videos->video_name; ?>"/>
+                                    <div class="external-video-overlay">
+                                     
+                                    </div>    
+                                </div>
+                                <?php if ($videos->video_name) { ?>
+                                    <h2 class="video-title"><?php echo $videos->video_name; ?></h2>
+                                <?php } ?>                              
+                           <!--<p class="post-date">Published on 12/1/2016</p>-->
+                            </div>
+                        </a>
+                    </li>
+                <?php } ?>
+            <?php } ?>
+        </ul>
+    </div>
+<?php } ?>
+<script type="text/javascript">
+    jQuery(document).ready(function () {        
+        var main_vid = document.getElementById("mainvideo");
+        var main_desc= jQuery("#main-video-desc");
+        jQuery(".youtubevideo-item").click(function () {
+            var vidsrc = jQuery(this).find('.youtube-video-overlay').attr('data-embededid');
+            main_vid.src = 'http://www.youtube-nocookie.com/embed/' + vidsrc + '?wmode=opaque&rel=0&autohide=1&showinfo=0&autoplay=1';
+            jQuery(".video-fs-overlay").addClass("fs-active");   
+            var desc = jQuery(this).find('.video-desc');          
+            if (desc.length>0) {//desc present
+                jQuery(".video-fs-overlay-content").removeClass('nodesc');
+                main_desc.html(desc.html());                
+            }
+            else{
+                jQuery(".video-fs-overlay-content").addClass('nodesc');                
+            }
+        });
+
+        jQuery(".video-fs-overlay").click(function () {
+            var main_image = document.getElementById("mainvideo");
+            main_image.src = "";
+            jQuery(this).removeClass('fs-active');
+            main_desc.html('');
+        });
+    });
+</script>

@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mapmygenomie_Customerenquiry>
+            <version>1.0.0</version>
+        </Mapmygenomie_Customerenquiry>
+    </modules>
+    <global>
+         <models>
+            <mapmygenomie_customerenquiry>
+                <class>Mapmygenomie_Customerenquiry_Model</class>
+                <resourceModel>customerenquiry_resource</resourceModel>
+            </mapmygenomie_customerenquiry>
+            <customerenquiry_resource>
+                <class>Mapmygenomie_Customerenquiry_Model_Resource</class>
+                <entities>
+                    <customerenquiry>
+                        <table>mapmygenomie_customer_enquiry</table>
+                    </customerenquiry>
+                </entities>
+            </customerenquiry_resource>
+        </models>
+         <helpers>
+            <mapmygenomie_customerenquiry>
+                <class>Mapmygenomie_Customerenquiry_Helper</class>
+            </mapmygenomie_customerenquiry>
+        </helpers>
+        
+        <blocks>
+            <mapmygenomie_customerenquiry>
+                <class>Mapmygenomie_Customerenquiry_Block</class>
+            </mapmygenomie_customerenquiry>
+        </blocks>       
+        
+        <!-- allow the plugin to read and write -->
+        <resources>
+            <mapmygenomie_customerenquiry_setup>
+                <setup>
+                    <module>Mapmygenomie_Customerenquiry</module>
+                </setup>
+            </mapmygenomie_customerenquiry_setup>
+        </resources>  
+    </global>
+    <frontend>
+        <routers>
+            <routeurfrontendcustomer>
+                <use>standard</use>
+                <args>
+                    <module>Mapmygenomie_Customerenquiry</module>
+                    <frontName>customerenquiry</frontName>
+                </args>
+            </routeurfrontendcustomer>
+        </routers>
+        <layout>
+            <updates>
+                <mapmygenomie_customerenquiry>
+                    <file>mapmygenomie_customerenquiry.xml</file>
+                </mapmygenomie_customerenquiry>
+            </updates>
+        </layout>
+    </frontend>     
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Mapmygenomie_Customerenquiry after="Mage_Adminhtml">Mapmygenomie_Customerenquiry_Adminhtml</Mapmygenomie_Customerenquiry>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>     
+    <adminhtml>
+        <layout>
+            <updates>
+                <mapmygenomie_customerenquiry module="Mapmygenomie_Customerenquiry">
+                    <file>mapmygenomie_customerenquiry.xml</file>
+                </mapmygenomie_customerenquiry>
+            </updates>
+        </layout>
+    </adminhtml>      
+</config>

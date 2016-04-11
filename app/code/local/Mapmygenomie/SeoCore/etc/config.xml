@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mapmygenomie_SeoCore>
+            <version>1.1.1</version>
+        </Mapmygenomie_SeoCore>
+    </modules>     
+    <global>       
+        <models>
+            <mapmygenomie_seocore_model>
+                <class>Mapmygenomie_SeoCore_Model</class>
+                <resourceModel>seocore_mysql4</resourceModel>
+            </mapmygenomie_seocore_model>           
+        </models>
+        <helpers>
+            <mapmygenomie_seocore>
+                <class>Mapmygenomie_SeoCore_Helper</class>
+            </mapmygenomie_seocore>
+        </helpers> 
+		<resources>
+            <mapmygenomie_seocore_setup>
+                <setup>
+                    <module>Mapmygenomie_SeoCore</module>				
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mapmygenomie_seocore_setup>
+        </resources>
+    </global>
+  
+    <frontend>
+        <events>         
+            <controller_action_noroute>
+                <observers>
+                    <seocore_discontinued>
+                        <type>singleton</type>
+                        <class>Mapmygenomie_SeoCore_Model_Observer</class>
+                        <method>discontinuedCheck</method>
+                    </seocore_discontinued>
+                </observers>
+            </controller_action_noroute>         
+        </events>
+    </frontend>
+	
+	<!-- Set default values for system varablses -->
+ <default>
+        <mapmygenomie_seocore>
+            <settings>
+                <enable>1</enable>
+            </settings> 
+		</mapmygenomie_seocore>
+    </default>
+</config>

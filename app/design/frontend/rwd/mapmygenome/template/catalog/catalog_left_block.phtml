@@ -1,0 +1,71 @@
+
+<?php
+
+	/*$category = Mage::getModel('catalog/category')->load(2); 
+    $treeModel = $category->getTreeModel(); 
+    $treeModel->load();
+  
+    $ids = $treeModel->getCollection()->getAllIds(); 
+  
+    $data = array();
+  
+    if (!empty($ids))
+    { 
+        foreach ($ids as $id)
+        { 
+            $cat = Mage::getModel('catalog/category'); 
+            $cat->load($id); 
+			if($cat->getIsActive() && $cat->getName() != "Default Category") {
+				$categoryData = array('id'=>$cat->getId(),
+								  'url'=>$cat->getUrl(),
+								  'name'=>$cat->getName(),
+								  'image'=>$cat->getImageUrl(),
+								  'isActive'=>$cat->getIsActive()
+								 );
+				array_push($data, $categoryData); 
+			}
+        } 
+    }*/
+$storeId = Mage::app()->getStore()->getStoreId();
+$rootCategoryId = Mage::app()->getStore($storeId)->getRootCategoryId();
+ $data = array();
+$categoriesList = Mage::getModel('catalog/category')->getCollection()
+                    ->setStoreId($storeId)
+                    ->addFieldToFilter('is_active', 1)
+                     ->addAttributeToFilter('path', array('like' => "1/{$rootCategoryId}/%"))
+                   ->addAttributeToSelect('*');
+	foreach($categoriesList as $categorie)
+		{
+			$categoryData = array('id'=>$categorie->getId(),
+								  'url'=>$categorie->getUrl(),
+								  'name'=>$categorie->getName()					 
+								 );
+			array_push($data, $categoryData);						
+
+        }		
+	
+?>
+<div class="prod_list_left trans_pt4s">
+	
+	<?php //echo $this->getLayout()->createBlock('core/text_list')->setTemplate('catalog/layer/state.phtml')->toHtml(); ?>
+	
+	<div class="prod_category">
+		<ul>
+			<?php foreach ($data as $d): ?>
+				<li><a href="<?php echo $d['url'] ?>" title="<?php echo $d['name'] ?>"><?php echo $d['name'] ?></a></li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+</div>
+
+
+<?php 
+//Register variable
+//Mage::register('store_id', Mage::app()->getStore()->getId());
+
+//Fetch registry variable value
+//Mage::registry('store_id');
+
+//Destroy / Unregister the variable
+//Mage::unregister('store_id');
+?>

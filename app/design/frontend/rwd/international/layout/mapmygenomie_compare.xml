@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<layout>
+    <mapmygenomie_compare_index_index>
+        <reference name="breadcrumbs">
+            <action method="addCrumb">
+                <crumbName>Home</crumbName>
+                <crumbInfo>
+                    <label>Home</label>
+                    <title>Home</title>
+                    <link>{{baseUrl}}</link>
+                </crumbInfo>
+            </action>
+            <action method="addCrumb">
+                <crumbName>Compare</crumbName>
+                <crumbInfo>
+                    <label>Compare</label>
+                    <title>Compare</title>
+                </crumbInfo>
+            </action>
+        </reference>
+        <label>Compare</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">  
+            <reference name="head">   
+                <action method="setTitle" translate="title">
+                    <title>Product Matrix</title>
+                </action>	    
+                <action method="setDescription" translate="title">
+                    <title>Find the right product for you!</title>
+                </action>  
+                <action method="addCss">
+                    <stylesheet>css/inside.css</stylesheet>
+                </action>
+                <action method="removeItem">
+                    <type>skin_css</type>
+                    <name>css/styles.css</name>
+                </action>
+                <action method="addItem" ifconfig="mapmygenomie_compare/settings/enabled">
+                    <type>skin_js</type>
+                    <name>js/jquery.tipsy.js</name>
+                </action>
+                <action method="addItem" ifconfig="mapmygenomie_compare/settings/enabled">
+                    <type>skin_js</type>
+                    <name>js/owl.carousel.js</name>
+                </action>
+            </reference>			
+        </reference>	
+        <reference name="content">
+            <block type="mapmygenomie_compare/list" name="compare-list" template="compare/list.phtml">
+            </block>
+        </reference>
+    </mapmygenomie_compare_index_index>
+</layout>

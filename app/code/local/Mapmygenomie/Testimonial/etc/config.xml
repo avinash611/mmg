@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mapmygenomie_Testimonial>
+            <version>0.1.0</version>
+        </Mapmygenomie_Testimonial>
+    </modules>
+    <global> 			
+        <helpers>
+            <mapmygenomie_testimonial>
+                <class>Mapmygenomie_Testimonial_Helper</class>
+            </mapmygenomie_testimonial>
+        </helpers>
+        <blocks>
+            <mapmygenomie_testimonial>
+                <class>Mapmygenomie_Testimonial_Block</class>
+            </mapmygenomie_testimonial>
+        </blocks> 
+        
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <mapmygenomie_testimonial>
+                    <file>mapmygenomie_testimonial.xml</file>
+                </mapmygenomie_testimonial>
+            </updates>
+        </layout>
+        <routers>
+            <mapmygenomie_testimonial>
+                <use>standard</use>
+                <args>
+                    <module>Mapmygenomie_Testimonial</module>
+                    <frontName>testimonial</frontName>
+                </args>
+            </mapmygenomie_testimonial>
+        </routers>      
+    </frontend>
+</config>

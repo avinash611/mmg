@@ -1,0 +1,45 @@
+<?php
+$collectionCustomerReviews = $this->getAllTestimonials();
+if (sizeof($collectionCustomerReviews) > 0) {
+    echo '<div class="cont_inside">';
+    echo '<div class="owl-carousel resp_div"  style="display: block;">';
+    foreach ($collectionCustomerReviews as $data) {
+        ?>
+        <div class="owl-item testimony-item">
+            <div class="item">
+                <div class="testimony-content">
+                    <div class="test_done_table_cell test-img-wrap img_resp width_40per">
+                        <div class="circular-img">
+                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $data->getData('carousal_image'); ?>" class="trans_pt4s" title="<?php echo $data->getData('carousal_headtitle'); ?>">
+                        </div>                   
+                    </div>            
+                    <div class="test_done_table_cell test-text-wrap img_resp width_60per">
+                        <h3>
+                            <span class="color_green"><span class="thin"><?php echo $data->getData('carousal_headtitle'); ?></span></span>
+                        </h3>
+                        <div class="testimony-desc">
+                            <p><?php echo $data->getData('carousal_description'); ?></p> 
+                        </div>                          
+                    </div>
+                </div>               
+            </div>
+        </div>  
+    <?php } ?>
+    </div>
+    </div> 
+<?php }
+?>
+             
+
+
+
+
+
+
+
+
+
+
+
+
+

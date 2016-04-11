@@ -1,0 +1,50 @@
+<config>
+    <tabs>
+        <pixel translate="label" module="mapmygenomie_pixel">
+            <label>Pixel Details</label>
+            <sort_order>20</sort_order>
+        </pixel>
+    </tabs>
+    <sections>
+        <mapmygenomie_pixel translate="label">
+            <label>Pixel Details</label>
+            <tab>pixel</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>  
+                <facebookcustomaudience translate="label">
+                    <label>Facebook Custom Audience</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>               
+                    <fields>
+                        <enable translate="label">
+                            <label>Switch On / Off: </label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>                     
+                        </enable>
+                        <fb_custom_audience_id translate="label comment">
+                            <label>Facebook Custom Audience ID</label>
+                            <comment><![CDATA[fb_custom_audience_id]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fb_custom_audience_id>
+                    </fields>                   
+                </facebookcustomaudience>				
+            </groups>
+        </mapmygenomie_pixel>
+    </sections>
+</config>

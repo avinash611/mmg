@@ -1,0 +1,94 @@
+<?php
+/**
+ * if enabled ajax load products
+ */
+?>
+<?php if (Mage::getStoreConfig('mworks_ajaxproductlist/settings/enabled') == '1') { ?>
+    <script type="text/javascript">
+        var showButtonCount = 1;
+        var nextPageUrl;
+        var isProcessing = true;
+        jQuery.noConflict();
+        jQuery(function () {
+            jQuery(".ajax-loader").hide();
+            jQuery(window).on('scroll', function () {
+                if (offsetbottom()) {
+                    if (isProcessing) {
+                        if (jQuery.active <= 0) {
+                            jQuery(".ajax-loader").show();
+                            nextPageUrl = jQuery('.pages .i-next').attr('href');
+
+                            if (nextPageUrl == undefined) {
+                                jQuery(".ajax-loader").hide();
+                                jQuery("#customAjaxLoader").html('<div class="nomrp"><div>No more results <br/>to display.</div></div>');
+                            } else {
+                                if (showButtonCount > 3) {
+                                    jQuery(".ajax-loader").hide();
+                                    jQuery("#showMoreProductsAjax").show().html('<p id="showMoreOfIt" onclick="ajaxProductFetch(\'' + nextPageUrl + '\')">Show More</p>');
+                                } else {
+                                    ajaxProductFetch(nextPageUrl);
+                                }
+                            }
+                            isProcessing = false;
+                        }
+
+                    }
+                }
+            });
+        });
+        function offsetbottom() {
+            var winHeight = jQuery(window).height();
+            return jQuery(document).scrollTop() >= jQuery('.item:last-child').offset().top + jQuery('.item:last-child').innerHeight() - winHeight
+        }
+
+        function ajaxProductFetch(nextPageUrl) {
+            jQuery("#showMoreProductsAjax").hide();
+            jQuery(".ajax-loader").show();
+            jQuery.ajax({
+                url: nextPageUrl,
+                success: function (msg) {
+                    showButtonCount++;
+                    jQuery(".ajax-loader").hide();
+                    //refresh the page class element
+                    jQuery('.pages').html(jQuery(msg).find('.pages').html());
+                    //Get Product count in the Grid
+                    var productIterationCount = jQuery('ul.products-grid li.item').length;
+                    //append the list to the existing product list
+                    jQuery('.products-grid').append(jQuery(msg).find('.products-grid').html());
+                    //Run ga
+                    jQuery(jQuery(msg).find('.products-grid li.item')).each(function (index) {
+                        runGaImpression(jQuery(this).data("id"), jQuery(this).data("name"), jQuery(this).data("category"), jQuery(this).data("list"), ++productIterationCount);
+                    });
+                    ga('send', 'pageview');
+                    isProcessing = true;
+                    return false;
+                }
+            });
+        }
+
+    </script>
+<?php } ?>
+
+<script>
+    //Runs Initially after products are loaded
+    jQuery(window).load(function () {
+        jQuery('.products-grid li.item').each(function (index) {
+            //runGaImpression(jQuery(this).data("id"), jQuery(this).data("name"), jQuery(this).data("category"), jQuery(this).data("list"), ++index);
+        });
+       //ga('send', 'pageview');
+    });
+
+    //GA Impression Code
+    function runGaImpression(id, name, category, list, position) {
+        ga('ec:addImpression', {
+            'id': id, // Product details are provided in an impressionFieldObject.
+            'name': name,
+            'category': category,
+            'list': list,
+            'position': position // 'position' indicates the product position in the list.
+        });
+    }
+	
+
+   // });
+</script>

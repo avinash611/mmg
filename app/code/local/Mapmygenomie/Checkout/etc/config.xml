@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mapmygenomie_Checkout>
+            <version>0.0.1</version>
+        </Mapmygenomie_Checkout>
+    </modules>
+    <global>
+        <blocks>
+            <checkout>
+                <rewrite>
+                    <onepage>Mapmygenomie_Checkout_Block_Onepage</onepage><!-- rewrite the onepage chackout block -->
+					
+                    <onepage_billing>Mapmygenomie_Checkout_Block_Onepage_Billing</onepage_billing><!-- rewrite the onepage chackout block -->
+                
+                </rewrite>
+            </checkout>
+        </blocks>
+        <helpers>
+            <mapmygenomie_checkout>
+                <class>Mapmygenomie_Checkout_Helper</class>
+            </mapmygenomie_checkout>
+        </helpers>       
+    </global>
+    <default>
+        <checkout>
+            <options>
+                <hide_shipping>1</hide_shipping>
+                <default_shipping>freeshipping_freeshipping</default_shipping><!-- set the default shipping method code -->
+            </options>
+        </checkout>
+    </default>
+    <frontend>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <Mapmygenomie_Checkout before="Mage_Checkout">Mapmygenomie_Checkout</Mapmygenomie_Checkout>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+        
+    </frontend>
+</config>

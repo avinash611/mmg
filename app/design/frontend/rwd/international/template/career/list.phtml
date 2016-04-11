@@ -1,0 +1,172 @@
+
+<?php $_categories = $this->getCategories(); ?>
+<div class="career-banner">
+   
+    <img class="adaptive" data-msrc="<?php echo $this->getSkinUrl('images/banner_carreer-resp.jpg');?>" data-dsrc="<?php echo $this->getSkinUrl('images/banner_carreer.jpg');?>" src="<?php echo $this->getSkinUrl('images/banner_carreer.jpg');?>">
+</div> 
+<div class="careers cont_inside">
+    <div class="all_careers">
+        <div class="page-title"><h1>Careers</h1></div>
+        <?php if (count($_categories) > 0) { ?>
+            <div class="careers_posts">
+                <?php foreach ($_categories as $_category) { ?>
+                    <div class="max_width career-position">
+                        <div class="padd_50 career_title">
+                            <div data-id="<?php echo $_category->getCategoryId() ?>" >
+                                <span class="career_post_title" data-catname="<?php echo $_category->getCategoryName(); ?>"><?php echo $_category->getCategoryName(); ?>
+                                    <span class="scroll">
+                                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/196759-200.png";>
+                                    </span>
+                                </span>
+                            </div>
+                            <?php $_positions = $this->getCategoryPositions($_category) ?>
+                            <?php foreach ($_positions as $_position) { ?>
+                                <div class="each_career_post career-position-description-<?php echo $_category->getCategoryId() ?>">
+                                    <div class="each_career_post_inner">
+                                        <a class="each_career_close"></a>
+                                        <?php $position_name = $_position->getPositionName(); ?>
+                                        <?php $position_count = $_position->getPositionCount() ?>
+                                        <?php $position_location = $_position->getPositionLocation() ?>
+                                        <?php
+                                        $template_head = $position_name . '';
+                                        if (!empty($position_location)) {
+                                            $template_head .= ' | Location - ' . $position_location;
+                                        }
+                                        ?>
+                                        <h4><?php echo $template_head; ?></h4>
+                                        <p><?php echo $_position->getPositionDescription(); ?></p>
+                                        <a class="career_apply_button"><span><span>Apply</span></span></a>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>     </div>
+                <?php } ?>  
+            </div>
+        <?php } ?> 
+            <div class="careers_app"> 
+                <div class="max_width">
+                    <div class="padd_50 careers_width_600">
+                        <form action="<?php echo $this->getPostUrl('careers/index/save') ?>" id="jobForm" method="post" class="scaffold-form" enctype="multipart/form-data">
+                            <div class="fieldset">
+                                <h2 class="legend"><?php echo Mage::helper('mapmygenomie_career')->__('Applicant Information') ?></h2>
+                                <p class="required"><?php echo Mage::helper('mapmygenomie_career')->__('* Required Fields') ?></p>
+                                <ul class="form-list">
+                                    <li class="fields">
+                                        <div class="field">
+                                            <label for="name" class="required"><?php echo Mage::helper('mapmygenomie_career')->__('Applicant Name') ?></label>
+                                            <div class="input-box">
+                                                <input name="applicant_name" id="applicant_name" title="Applicant Name" value="<?php echo $this->escapeHtml($this->helper('mapmygenomie_career')->getApplicantName()) ?>" class="input-text required-entry" type="text" />
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li>
+                                        <div class="field">
+                                            <label for="email" class="required"><?php echo Mage::helper('mapmygenomie_career')->__('Email') ?></label>
+                                            <div class="input-box">
+                                                <input name="applicant_email" id="applicant_email" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('mapmygenomie_career')->__('Email')) ?>" value="<?php echo $this->escapeHtml($this->helper('mapmygenomie_career')->getApplicantEmail()) ?>" class="input-text required-entry validate-email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label for="telephone"><?php echo Mage::helper('mapmygenomie_career')->__('Telephone') ?></label>
+                                        <div class="input-box">
+                                            <input name="applicant_phone" id="applicant_phone" title="Applicant Phone" value="" class="input-text" type="tel" />
+                                        </div>
+                                    </li>
+                                   <li class="fields">
+                                        <div class="field file_type_position">
+                                            <label for="name" class="required">Upload CV</label><span class="file_types">We support .doc,.docx,.pdf files. </span>
+                                            <div class="input-box">
+                                                <input type="file" name="filename" id="filename" title="Upload File" value="" Placeholder="We support .Doc,.Txt files" class="required-entry" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="buttons-set">
+                                <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+                                 <input type="hidden" name="positionapplied" id="positionapplied" value=""/>
+                                <button type="submit" title="Submit" class="button"><span><span>Submit</span></span></button>
+                            </div>
+                        </form>
+                    </div>    
+                </div>
+            </div>             
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        var bodyTop=0;
+        jQuery(document.body).animate({scrollTop:bodyTop},500);
+    });
+   
+
+    (function ($) {
+        'use strict';
+
+        var accordian = new function () {
+            this.init = function () {
+                this.bindevents();
+            };
+            this.bindevents = function () {
+                jQuery('.career-position .career_title').on('click', this.toggle_section);
+                $('.career-position:first-child').addClass('active');
+
+
+            };
+            this.toggle_section = function () {
+                console.log(jQuery(this));
+                var carPos =  jQuery(this).closest('.career-position');
+                if (!carPos.hasClass('active')) {
+                    $('.career-position.active').removeClass('active');
+                    carPos.addClass('active');
+
+                    event.stopPropagation();
+                    var animtop = carPos.offset().top;                    
+                    jQuery(document.body).animate({scrollTop:animtop},400);
+                }
+                else {
+                    carPos.removeClass('active');
+                    var animtop = carPos.offset().top;                    
+                    jQuery(document.body).animate({scrollTop:animtop},400);
+                }
+            }
+
+        };
+        accordian.init();
+
+
+        $('.career_apply_button').on('click',function(event){
+            event.stopPropagation();
+            var _top = $('.careers_app').offset().top ;
+            $("#positionapplied").val($('.career-position.active .career_post_title').attr('data-catname'));
+            $(document.body).animate({scrollTop:_top},500);    
+  });
+       resize_banner ();
+        $(window).on('resize',function(){
+            resize_banner ();
+        })
+
+
+    })(jQuery);
+
+    function resize_banner (){
+             var banner =  jQuery('.adaptive');
+             if(jQuery(window).width()<=1024){
+                banner.attr('src',banner.attr('data-msrc'));
+             }
+             else{
+                banner.attr('src',banner.attr('data-dsrc')) ;
+             }
+    }
+
+
+</script>
+<script type="text/javascript">
+//<![CDATA[
+    var jobForm = new VarienForm('jobForm', true);
+//]]>
+</script>
+

@@ -1,0 +1,188 @@
+
+
+.col2-right-layout .col-main,.col2-right-layout .col-right.sidebar{
+    float: left;
+}
+.cont_inside{overflow: hidden;margin: 40px 40px 40px 50px;position: relative;padding: 0!important;}
+.col2-right-layout .col-main{
+     width: calc(100% - 407px);
+     padding-right: 40px;
+ }
+
+.col2-right-layout .col-right.sidebar{
+    width:407px;
+    position: absolute;
+    right: 0;
+    background: #fff;
+    height: 100%;
+    top:0;
+    padding: 35px;
+}
+
+.product-view{
+    width: 100%;
+    float: left;
+    background-color: #f5f8f7;
+   /* padding: 10px;*/
+}
+.left50{width: auto;float: none}
+.review-product-info{width: 100%;background: #fff;float: left}
+.product-img-box{width: 340px;text-align: center}
+.product-shop{
+    width: calc(100% - 350px);
+}
+.product-img-box,.product-shop{
+    display: inline-block;vertical-align: middle;
+}
+
+.review-heading{padding: 15px 20px}
+
+
+.product-name .h1{font-size: 22px}
+.box-reviews,.review-heading,.review-title,.review-footer,.box-reviews  ul li,.review-title-block,.form-body,.form-list,.form-list li,.buttons-set{width: 100%;float: left}
+.review-heading{background-color: #fff;border-top:1px solid #eee}
+.review-heading h2{float: left;width: auto;font-size: 14px;color: #44bd8d;text-transform: uppercase;line-height: 35px;}
+.pager-no-toolbar{float: right}
+.amount--no-pages{display: none}
+
+.limiter label{
+    font-size: 14px;color: #44bd8d;text-transform: uppercase
+}
+.limiter select{
+    font-size: 10px;
+    color: #999;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-left: 10px;
+}
+.box-reviews  > ul{
+    width: 100%;
+    float: left;
+    padding: 15px;
+    list-style: none;
+}
+.box-reviews > ul li{
+
+    BACKGROUND-COLOR: #fff;
+    margin-bottom: 10px;
+
+}
+.review-title{
+    padding: 30px;
+}
+.review-title a{
+    font-size: 13px;
+    color: #636363;
+    display: block;
+    margin-bottom: 20px;
+}
+.review-body{
+    font-size: 12px;
+    color: #929292;
+    line-height: 22px;
+}
+.review-heading h2 span{
+    text-transform: capitalize;
+
+}
+.review-footer{
+    border-top: 2px solid #f5f8f7;
+    padding: 15px 30px;
+}
+.reviewer-name{
+    float: left;
+    font-size: 12px;
+    width: auto;
+    margin-right: 40px;
+    line-height: 32px;
+}
+.reviewer-name .label{color: #b2b4b4}
+.reviewer-name .name{
+    color: #616161;
+}
+.ratings-table th{font-size: 12px;color: #b2b4b4;padding-right: 20px;
+    line-height: 22px;}
+.review-ratings{float: right}
+.rating-box{    position: relative;
+    font-size: 22px;
+    color: #dfe3e2;
+    bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;line-height: 22px}
+.rating{position: absolute;
+    left: 0;
+    top: 0;
+    color: #44bd8d;
+    overflow: hidden;}
+
+.review-title-block{
+    background-color: #fff;
+    padding: 30px
+}
+.review-title-block h2{
+    font-size: 14px;text-transform: uppercase;color: #44bd8d;
+    margin-bottom: 10px;
+}
+ .review-title-block h3{
+     font-size: 13px;color: #a6a6a6
+ }
+ .form-body{
+     padding: 40px;
+     text-align: center;
+ }
+ .center-body{display: inline-block;text-align: left;width: 1000px;}
+ .fieldset h4,.form-list li label{
+     font-size: 14px!important;color: #717171!important;text-transform: uppercase;
+     margin-top: 20px;
+     display: block;
+ }
+.form-list{list-style: none}
+.form-list li > .input-box,.table-rating{
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 30px;
+    border-left: 2px solid #44bd8d;
+}
+.form-list input[type="text"],textarea{
+    border-color: transparent;
+    width: 100%;
+    background: #fff;
+    color:#b9b9b9!important;
+    font-size: 13px;
+    font-style: italic;
+
+}
+.review-submit{
+    float: right;
+    display: inline-block;
+    padding: 15px 20px;
+    margin: 20px 0;
+    text-align: left;
+    border: 1px #ebebeb solid;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: #48c296;
+    position: relative;
+    color: #fff;
+    outline: none;
+}
+td.value{padding: 0 60px;text-align: center}
+.table-rating th{text-align: center}
+.table-rating .rating-box{
+font-size: 13px;
+    line-height: 13px;
+}
+.first th{
+    font-size: 13px;
+    color: #b9b9b9;
+    width: 200px;
+    position: relative;
+    bottom: 3px;
+}
+.recently-viewed-items{list-style: none}

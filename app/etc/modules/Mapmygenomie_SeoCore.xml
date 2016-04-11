@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Module configuration file
+ * @category    Mapmygenomie
+ * @package     Mapmygenomie_Seo
+ */
+-->
+<config>
+    <modules>
+        <Mapmygenomie_SeoCore>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Mapmygenomie_SeoCore>
+    </modules>
+</config>

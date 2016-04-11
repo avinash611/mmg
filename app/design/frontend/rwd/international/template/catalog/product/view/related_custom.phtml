@@ -1,0 +1,113 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+ $dataParams = $this->getRequest()->getParams();
+ $request_direct = true; 
+ if(isset($dataParams['pcl'])) {
+	$request_direct = false;
+ }
+ $_product = $this->getProduct(); 
+  $related_blog =  Mage::helper('productholder')->BlogSearch($_product->getSku(),'3');
+  
+/* similar product */
+$category = Mage::helper('productholder')->getSimilarProductCategory($_product);
+if (!empty($category)) {
+    $category_name = $category->getName();
+    $collection = Mage::helper('productholder')->getRelatedProducts($category, $_product);
+} else {
+    $collection = "";
+}
+
+ ?>
+ 
+<div class="prod_related">
+	 <?php //if (!empty($related_blog)) { ?>
+                <div class="left50">
+				<?php if($related_blog->status != "error") { ?>
+                    <div class="padd50">
+                        <h1 class="head insidehead">
+                            <span class="head_align">Related Blogs</span>
+                        </h1>
+						<?php foreach($related_blog->posts as $resblog): ?>
+                        <div class="related_each_blog">
+                            <span>
+							<?php if($resblog->attachments) { ?>
+                                <a href="<?php echo $resblog->url;?>" target="_blank">
+								<img src="<?php print_r($resblog->attachments[0]->images->thumbnail->url); ?>" /></a>
+							<?php } ?>
+                            </span>
+                            <span>
+                                <b>
+                                    <h5><a href="<?php echo $resblog->url;?>" target="_blank"><?php echo $resblog->title;?></a></h5>
+                                    <p><?php echo $resblog->excerpt;?></p> 
+                                </b>
+                            </span>
+                        </div>
+						<?php endforeach; ?>
+
+                        
+
+
+                    </div>
+				<?php } ?>
+                </div>
+				<?php //}?>
+				 <?php if (!empty($collection)) { 
+				 if (count($collection) > 1){
+				 ?>
+                <div class="right50">
+				      <div class="padd50">
+                        <h1 class="head insidehead">
+                            <span class="head_align">Similar Products</span>
+                        </h1>
+                        <ul>
+						<?php						
+						foreach($collection as $product) {		
+		$imgtitle = $product->getName().' '.$category_name;
+		//echo $category_name;
+		$product = Mage::getModel('catalog/product')->load($product->getId()); /* Load Products by ID*/
+		$_imageUrlindex = $this->helper('catalog/image')->init($product, 'small_image')->resize(100);
+		$producturl = Mage::getBaseUrl() . trim(Mage::getModel('catalog/product_url')->getUrlPath($product, $category), "/");
+		$link_url = 'href="'.$producturl.'"';
+		$classname = "";
+		if(!$request_direct) {
+		$link_url = 'data-href="'.$producturl.'"';
+		$classname = "wrap";
+		}
+		?>
+                            <li>
+                                <a <?php echo $link_url; ?> class="<?php echo $classname;?>"><img src="<?php echo $_imageUrlindex;?>"></a>
+                            </li>
+						<?php } ?>
+                            
+                        </ul>
+                    </div>
+                </div>
+				 <?php }?>
+				 <?php }?>
+            </div>

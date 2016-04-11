@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <cms>
+            <children>
+                <mapmygenomie_owlcarousal translate="title" module="mapmygenomie_owlcarousal">
+                    <title>Carousal Management</title>
+                    <sort_order>30</sort_order>
+                    <action>adminhtml/carousal_category</action>
+                </mapmygenomie_owlcarousal>							
+            </children>
+        </cms>
+    </menu>	
+  
+
+    <!-- Access permissions -->
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <cms>
+                        <children>
+                            <mapmygenomie_owlcarousal translate="title" module="mapmygenomie_owlcarousal">
+                                <title>Carousal Management</title>
+                                <sort_order>30</sort_order>
+                            </mapmygenomie_owlcarousal>
+                        </children>
+                    </cms>
+                </children>
+            </admin>
+        </resources>
+    </acl>  	
+</config>

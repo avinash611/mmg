@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Rewrite_GoogleAnalytics>
+            <version>0.1.0</version>
+        </Rewrite_GoogleAnalytics>
+    </modules>
+    <global>       
+        <blocks>		
+            <rewrite_googleanalytics>
+                <class>Rewrite_GoogleAnalytics_Block</class>
+            </rewrite_googleanalytics>
+            
+ 
+        <googleanalytics>
+            <rewrite>
+                <ga>Rewrite_GoogleAnalytics_Block_Ga</ga>
+            </rewrite>
+        </googleanalytics>
+
+    
+        </blocks>
+        <helpers>
+            <rewrite_googleanalytics>
+                <class>Rewrite_GoogleAnalytics_Helper</class>
+            </rewrite_googleanalytics>
+        </helpers>       
+    </global>	
+</config>

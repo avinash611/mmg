@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+	  
+<config>	
+    <menu>
+        <mapmygenomie_customerenquiry module="mapmygenomie_customerenquiry" translate="title">
+               <title>Customer 23andme Reports</title>
+            <sort_order>100</sort_order>
+            <children>
+                <enquiry translate="title" module="mapmygenomie_customerenquiry">
+                    <title>Customer 23andme Reports</title>
+                    <sort_order>0</sort_order>
+                    <action>adminhtml/customerenquiry_index</action>
+                </enquiry>		
+            </children>
+        </mapmygenomie_customerenquiry>
+    </menu>	
+    
+    <!-- Access permissions -->
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <mapmygenomie_customerenquiry>
+                        <title>>Customer 23andme Reports</title>
+                        <sort_order>50</sort_order>
+                        <children>                         
+                            <enquiry translate="title" module="mapmygenomie_customerenquiry">
+                                <title>Customer 23andme Reports</title>
+                                <sort_order>20</sort_order>
+                            </enquiry>                          
+                        </children>
+                    </mapmygenomie_customerenquiry>                 
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

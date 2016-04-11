@@ -1,0 +1,97 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = Mage::helper('core')->quoteEscape($this->__('Add to Cart')); ?>
+<?php if($_product->isSaleable()): ?>
+				<?php
+				
+				if ($this->getProduct()->getTypeId() == 'configurable') {
+				foreach ($_item->getQuote()->getAllItems() as $simpleItem){
+				if ($simpleItem->getParentItemId() == $_item->getId()){
+				$_product = $simpleItem->getProduct();
+				break;
+				}
+				}
+				}
+				$stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product);
+				$min_sale_qty = (int)$stockItem->getData('min_sale_qty');
+				$total_qyt = (int)$stockItem->getQty();
+				if($total_qyt>10)
+				{
+				$total_qyt=10;
+				}
+    ?>
+<?php if(!$_product->isGrouped()): ?>
+<div class="select-style">
+                          <p>QTY :</p>
+                          
+						  <select name="qty" id="qty" maxlength="12">
+        <?php for($i = $min_sale_qty; $i <= $total_qyt; $i = $i + $min_sale_qty) : ?>
+            <option value="<?php echo $i?>" <?php echo ($i == $this->getQty())? "selected=selected": ""; ?>>
+                <?php echo $i?>
+            </option>
+        <?php endfor;?>
+    </select>
+                            
+                        </div>
+						<?php endif; ?>
+						
+
+     <?php echo $this->getPriceHtml($_product); ?>
+						 <?php echo $this->getChildHtml('bundle_prices') ?>
+                         <?php echo $this->getTierPriceHtml() ?>
+
+        <br class="clear" />
+		<a class="btn_purple" onclick="productAddToCartForm.submit(this)">Add to cart<span></span></a>
+        
+            <?php echo $this->getChildHtml('', true, true) ?>
+        
+   
+	
+						
+						
+
+    <?php /* ?>
+	<div class="add-to-cart">
+        <?php if(!$_product->isGrouped()): ?>
+        <div class="qty-wrapper">
+            <label for="qty"><?php echo $this->__('Qty:') ?></label>
+            <input type="text" pattern="\d*" name="qty" id="qty" maxlength="12" value="<?php echo max($this->getProductDefaultQty() * 1, 1) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>" class="input-text qty" />
+        </div>
+        <?php endif; ?>
+		
+		<a class="btn_purple" >Add to cart</a>
+        <div class="add-to-cart-buttons">
+            <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+            <?php echo $this->getChildHtml('', true, true) ?>
+        </div>
+    </div>
+	<?php
+	*/
+	?>
+	
+<?php endif; ?>

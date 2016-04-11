@@ -1,0 +1,27 @@
+
+<?php
+$storeId = Mage::app()->getStore()->getStoreId();
+$rootCategoryId = Mage::app()->getStore($storeId)->getRootCategoryId();
+$data = array();
+$categoriesList = Mage::getModel('catalog/category')->getCollection()
+        ->setStoreId($storeId)
+        ->addFieldToFilter('is_active', 1)
+        ->addAttributeToFilter('path', array('like' => "1/{$rootCategoryId}/%"))
+        ->addAttributeToSelect('*');
+foreach ($categoriesList as $categorie) {
+    $categoryData = array('id' => $categorie->getId(),
+        'url' => $categorie->getUrl(),
+        'name' => $categorie->getName()
+    );
+    array_push($data, $categoryData);
+}
+?>
+<div class="prod_list_left trans_pt4s">
+    <div class="prod_category">
+        <ul>
+<?php foreach ($data as $d): ?>
+                <li><a href="<?php echo $d['url'] ?>" title="<?php echo $d['name'] ?>"><?php echo $d['name'] ?></a></li>
+<?php endforeach; ?>
+        </ul>
+    </div>
+</div>
