@@ -4741,6 +4741,17 @@ table#my-enquiry-table td a{font-size:8px}
 
 }
 
+/*Css for price on request*/
+#overlay_form{
+    position: absolute;
+    border: 2px solid gray;
+    padding: 10px;
+    background: white;
+    width: 243px;
+    height: 384px;
+    border-radius: 8px;
+}
+
 /*IE css by Meraj*/
 td  img.alignright{max-height:180px;width:180px;}
 .active.female, .active.male{z-index:99}

@@ -48,6 +48,8 @@
     <?php $_columnCount = $this->getColumnCount(); ?>
     <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
         <?php $i=0; foreach ($_productCollection as $_product): ?>
+			<!--Getting Price On Request Value-->
+			<?php $priceOnRequest =Mage::getModel('catalog/product')->load($_product->getId())->getPriceOnRequest();?>
             <?php /*if ($i++%$_columnCount==0): ?>
             <?php endif*/
 			if(!is_object($current_category)) {
@@ -82,19 +84,28 @@
 								} 
 							?>
 							<p><?php echo $genomeProductDescription; ?></p>
+							<!--PriceonRequest Customization for price-->
+							<?php if(!$priceOnRequest): ?>
 							<?php echo $this->getPriceHtml($_product, true) ?>
+							<?php else: ?>
+							<?php endif; ?>
 						</span>
 					</a>
-					<span class="prod_links">					
+					<span class="prod_links">
+						<!--PriceonRequest Customization begains here-->
 						<?php if(!$_product->canConfigure() && $_product->isSaleable()): ?>
-						<?php $addtocarturl = $this->getAddToCartUrl($_product); ?> 
+							<?php if(!$priceOnRequest): ?>
+						<?php $addtocarturl = $this->getAddToCartUrl($_product); ?>
 							<a href="<?php echo Mage::helper('ajax')->getSecureUrlFrontend($addtocarturl); ?>" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" class="trans_pt2s addtoCartAjax"><?php echo $this->__('Add to Cart') ?><span></span></a>
-						<?php elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>
+							<?php else: ?>
+								<a href="#" class="price-on-request" id="<?php echo $_product->getId()?>" title="<?php echo $this->quoteEscape($this->__('Price On Request')) ?>"><?php echo $this->__('Price On Request') ?></a>
+							<?php endif; ?>
+							<?php elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>
 							<a title="<?php echo $this->quoteEscape($this->__('View Details')) ?>" class="trans_pt2s" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->__('View Details') ?><span></span></a>
 						<?php else: ?>
 							<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
 						<?php endif; ?>
-						
+						<?php if(!$priceOnRequest): ?>
 						<?php if ($this->helper('wishlist')->isAllow()) : 
 						$addtowishlisturl = $this->helper('wishlist')->getAddUrl($_product);						
 							if (!Mage::getSingleton('customer/session')->isLoggedIn()):						
@@ -105,6 +116,9 @@
 							  
 						<?php endif;
 							endif;?>
+						<?php else: ?>
+						<?php endif; ?>
+						<!--PriceonRequest Customization ends here-->
 					</span>
 				</span>
             </li>
@@ -158,3 +172,77 @@ if ($this->getChild('after')) {
     }
 }
 ?>
+
+
+<script type="text/javascript">
+
+	//open popup
+	var productId;
+	jQuery(".price-on-request").click(function(){
+		productId = jQuery(this).attr('id');
+		jQuery("#overlay_form").fadeIn(1000);
+		positionPopup();
+	});
+
+	jQuery(document).ready(function(){
+		jQuery("#price_on_request_save").click(function(){
+			var name=jQuery("#name").val();
+			var email=jQuery("#email").val();
+			var mobile=jQuery("#mobile").val();
+
+
+			jQuery.ajax({
+				url: "http://localhost/test/mailcheck.php",
+				type: 'POST',
+				data: {name: name, email: email, mobile: mobile, product_id:productId},
+				success:function(response){
+					// $this.prev("#check").html(response);
+					jQuery("#success").html(response);
+
+				},
+				error: function(response)
+				{
+					jQuery("#error").html(response);
+					//$this.prev("#check").html(response);
+
+				}
+			});
+
+
+		});
+
+
+//close popup
+		jQuery("#close").click(function(){
+			jQuery("#overlay_form").fadeOut(500);
+		});
+	});
+
+	//position the popup at the center of the page
+	function positionPopup(){
+		if(!jQuery("#overlay_form").is(':visible')){
+			return;
+		}
+		jQuery("#overlay_form").css({
+			left: (jQuery(window).width() - jQuery('#overlay_form').width()) / 2,
+			top: (jQuery(window).width() - jQuery('#overlay_form').width()) / 7,
+			position:'absolute'
+		});
+	}
+
+	//maintain the popup at center of the page when browser resized
+	jQuery(window).bind('resize',positionPopup);
+
+</script>
+
+
+<div id="overlay_form" style="display:none">
+	<p> Fill the Details </p>
+	<label>Name: </label><input type="text" name="name" value="" id="name"/><br /><br />
+	<label>Email: </label><input type="text" name="email" value="" id="email"/><br /><br />
+	<label>Moblie: </label><input type="text" name="mobile" value="" id="mobile"/><br /><br />
+	<input type="button" id="price_on_request_save" value="Submit" />
+	<a href="#" id="close" style="color: red">Close</a>
+</div>
+
+
